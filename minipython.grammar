@@ -14,17 +14,11 @@ Helpers
 	not_eol = [all - [cr + lf]]; 
 
 Tokens
+	line_comment = '#' not_eol* eol; 
+
 	tab = 9;
-	plus = '+';
-	minus = '-';
-	mult = '*';
-	dmult = '**';
-	div = '/';
-	eq = '=';
+	assign = '=';
 	exclam = '!';
-	dictt = 'dict';
-	def = 'def';
-	logic_plus = '&&';
 	l_par = '(';
 	r_par = ')';
 	l_br = '[';
@@ -32,23 +26,48 @@ Tokens
 	comma=',';
 	qmark = '?';
 	gqmark = ';';
+
+	plus = '+';
+	minus = '-';
+	mult = '*';
+	div = '/';
+	mode = '%';
+	dmult = '**';
+
+
 	if = 'if';
 	elif = 'elif';
 	else = 'else';
 	while = 'while';
+	for = 'for';
 	print = 'print';
 	return = 'return';
+	open = 'open';
+	type = 'type';
+	max = 'max';
+	min = 'min';
+	assert = 'assert';
+	dictt = 'dict';
+	def = 'def';
+	none = 'None';
+
+
+	leq = '<=';
 	less = '<';
+	geq = '>=';
 	great = '>';
+	neq = '!=';
+	eq = '==';
+
 	true = 'true';
-	semi = ':';
 	false = 'false';
+
+	semi = ':';
 	quote = '"';
 	blank = (' ' | lf | cr);
-	line_comment = '#' not_eol* eol; 
-	number = digit+ | (digit+ '.' digit+);
-	id = letter (letter | digit)*;
-	string = '"'not_eol* '"';
+	integer_literal = digit+ | (digit+ '.' digit+);
+	identifier = letter (letter | digit)*;
+	string_literal = '"'not_eol* '"';
 
 Ignored Tokens
 	blank, line_comment;
