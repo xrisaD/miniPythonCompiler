@@ -62,6 +62,9 @@ Tokens
 	true = 'true';
 	false = 'false';
 
+	and = 'and';
+	or = 'or';
+
 	semi = ':';
 	quote = '"';
 	blank = (' ' | lf | cr);
@@ -71,3 +74,9 @@ Tokens
 
 Ignored Tokens
 	blank, line_comment;
+
+Productions
+
+	programme = commands*;
+        
+	commands = false ;
