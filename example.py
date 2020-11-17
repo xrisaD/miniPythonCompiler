@@ -11,3 +11,6 @@ def fib(n):    # write Fibonacci series up to n
                       
 def funcwithdef(name,university="aueb"):
        print name, " studies in ", university
+
+f = open("testfile")
+please no
