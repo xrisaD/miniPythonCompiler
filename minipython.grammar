@@ -76,7 +76,27 @@ Ignored Tokens
 	blank, line_comment;
 
 Productions
-
 	programme = commands*;
-        
-	commands = false ;
+
+	commands ={stat} statement|
+				 {expr}expression;
+
+	statement ={if}tab* if  comparison semi statement |
+				  {assign}tab* id eq expression |
+				  {print}tab* print expression;
+
+	comparison = {true} true|
+					 {false} false|
+					 {lessc} [lpar]:expression less [rpar]:expression|
+					 {greatc}[lpar]:expression great [rpar]:expression;
+
+	expression = {multiplication} multiplication |
+					{addition} expression plus multiplication|
+					{subtraction} expression minus multiplication;
+
+	multiplication = {something} something |
+						  {multiplication} multiplication mult something;
+
+	something ={identifier}id|
+				  {numb}number|
+				  {par} l_par expression r_par;
