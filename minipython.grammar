@@ -1,0 +1,54 @@
+/*
+* Test Comments
+*/
+
+Package minipython;
+
+Helpers
+	digit = ['0' .. '9'];
+	letter = ['a' .. 'z']|['A' .. 'Z']; 
+	cr = 13; 
+	lf = 10;
+	all = [0..127]; 
+	eol = lf | cr | cr lf ;
+	not_eol = [all - [cr + lf]]; 
+
+Tokens
+	tab = 9;
+	plus = '+';
+	minus = '-';
+	mult = '*';
+	dmult = '**';
+	div = '/';
+	eq = '=';
+	exclam = '!';
+	dictt = 'dict';
+	def = 'def';
+	logic_plus = '&&';
+	l_par = '(';
+	r_par = ')';
+	l_br = '[';
+	r_br = ']';
+	comma=',';
+	qmark = '?';
+	gqmark = ';';
+	if = 'if';
+	elif = 'elif';
+	else = 'else';
+	while = 'while';
+	print = 'print';
+	return = 'return';
+	less = '<';
+	great = '>';
+	true = 'true';
+	semi = ':';
+	false = 'false';
+	quote = '"';
+	blank = (' ' | lf | cr);
+	line_comment = '#' not_eol* eol; 
+	number = digit+ | (digit+ '.' digit+);
+	id = letter (letter | digit)*;
+	string = '"'not_eol* '"';
+
+Ignored Tokens
+	blank, line_comment;
