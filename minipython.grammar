@@ -82,7 +82,7 @@ Productions
 				 {expr}expression;
 
 	statement ={if}tab* if  comparison semi statement |
-				  {assign}tab* id eq expression |
+				  {assign}tab* identifier eq expression |
 				  {print}tab* print expression;
 
 	comparison = {true} true|
@@ -97,6 +97,6 @@ Productions
 	multiplication = {something} something |
 						  {multiplication} multiplication mult something;
 
-	something ={identifier}id|
-				  {numb}number|
+	something ={identifier} identifier|
+				  {numb} integer_literal|
 				  {par} l_par expression r_par;
