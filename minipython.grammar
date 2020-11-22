@@ -13,7 +13,7 @@ Helpers
 	eol = lf | cr | cr lf ;
 	not_eol = [all - [cr + lf]];
 	d_quote = '"';
-    s_quote = ''';
+    	s_quote = ''';
 
 Tokens
 	line_comment = '#' not_eol* eol; 
