@@ -7,22 +7,22 @@ import minipython.analysis.*;
 
 public final class AExpression extends PExpression
 {
-    private TTrue _true_;
+    private PSum _sum_;
 
     public AExpression()
     {
     }
 
     public AExpression(
-        TTrue _true_)
+        PSum _sum_)
     {
-        setTrue(_true_);
+        setSum(_sum_);
 
     }
     public Object clone()
     {
         return new AExpression(
-            (TTrue) cloneNode(_true_));
+            (PSum) cloneNode(_sum_));
     }
 
     public void apply(Switch sw)
@@ -30,16 +30,16 @@ public final class AExpression extends PExpression
         ((Analysis) sw).caseAExpression(this);
     }
 
-    public TTrue getTrue()
+    public PSum getSum()
     {
-        return _true_;
+        return _sum_;
     }
 
-    public void setTrue(TTrue node)
+    public void setSum(PSum node)
     {
-        if(_true_ != null)
+        if(_sum_ != null)
         {
-            _true_.parent(null);
+            _sum_.parent(null);
         }
 
         if(node != null)
@@ -52,20 +52,20 @@ public final class AExpression extends PExpression
             node.parent(this);
         }
 
-        _true_ = node;
+        _sum_ = node;
     }
 
     public String toString()
     {
         return ""
-            + toString(_true_);
+            + toString(_sum_);
     }
 
     void removeChild(Node child)
     {
-        if(_true_ == child)
+        if(_sum_ == child)
         {
-            _true_ = null;
+            _sum_ = null;
             return;
         }
 
@@ -73,9 +73,9 @@ public final class AExpression extends PExpression
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_true_ == oldChild)
+        if(_sum_ == oldChild)
         {
-            setTrue((TTrue) newChild);
+            setSum((PSum) newChild);
             return;
         }
 

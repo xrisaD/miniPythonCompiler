@@ -163,7 +163,112 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAExpression(AExpression node)
+    public void caseASumExpression(ASumExpression node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAValueExpression(AValueExpression node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseASumSum(ASumSum node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAMinusSum(AMinusSum node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseATermSum(ATermSum node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAMultTerm(AMultTerm node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseADivTerm(ADivTerm node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAModuloTerm(AModuloTerm node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAPowerTerm(APowerTerm node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAExpPower(AExpPower node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseASubscriptionPower(ASubscriptionPower node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseASubscriptionSubscription(ASubscriptionSubscription node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAFuncSubscription(AFuncSubscription node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAOpenFunc(AOpenFunc node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseATypeFunc(ATypeFunc node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAMaxFunc(AMaxFunc node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAMinFunc(AMinFunc node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAFuncFunc(AFuncFunc node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAParFunc(AParFunc node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseACommaValue(ACommaValue node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAParPar(AParPar node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAExpressionPar(AExpressionPar node)
     {
         defaultCase(node);
     }

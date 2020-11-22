@@ -30,7 +30,7 @@ Tokens
 	comma=',';
 	qmark = '?';
 	semi = ';';
-    dot = '.';
+    	dot = '.';
 
 	plus = '+';
 	minus = '-';
@@ -107,7 +107,38 @@ Productions
                             {minus_assign}identifier minus_assign expression|
                             {div_assign}identifier div_assign expression|
                             {assign_list}identifier l_br [ex1]: expression r_br assign [ex2]: expression;
-    expression = true;
+
+    expression = {sum} sum | 
+		{value} value;
+
+    sum = {sum} sum plus term |
+	{minus} sum minus term |
+	{term} term ;
+
+    term = {mult} term mult power|
+	   {div} term div power |
+	   {modulo} term mode power|
+	   {power} power;
+
+    power = {exp} power dmult subscription |
+	    {subscription} subscription;
+
+    subscription = {subscription} identifier l_br func r_br |
+	   	   {func} func ;
+
+    func = {open} open l_par [left]: expression comma [right]: expression r_par |
+	   {type} type l_par identifier r_par |
+	   {max} max l_par value comma_value+ r_par |
+	   {min} min l_par value comma_value+ r_par |
+	   {func} function_call |
+	   {par} par;
+    
+    comma_value = comma value;
+
+    par = {par} l_par expression r_par |
+	  {expression} expression ;
+	  
+
     comparison = true;
 
     value = {fun_call}identifier dot function_call |

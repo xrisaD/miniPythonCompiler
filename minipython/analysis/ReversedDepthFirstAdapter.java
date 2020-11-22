@@ -622,24 +622,586 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAAssignListAssignmentStatement(node);
     }
 
-    public void inAExpression(AExpression node)
+    public void inASumExpression(ASumExpression node)
     {
         defaultIn(node);
     }
 
-    public void outAExpression(AExpression node)
+    public void outASumExpression(ASumExpression node)
     {
         defaultOut(node);
     }
 
-    public void caseAExpression(AExpression node)
+    public void caseASumExpression(ASumExpression node)
     {
-        inAExpression(node);
-        if(node.getTrue() != null)
+        inASumExpression(node);
+        if(node.getSum() != null)
         {
-            node.getTrue().apply(this);
+            node.getSum().apply(this);
         }
-        outAExpression(node);
+        outASumExpression(node);
+    }
+
+    public void inAValueExpression(AValueExpression node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAValueExpression(AValueExpression node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAValueExpression(AValueExpression node)
+    {
+        inAValueExpression(node);
+        if(node.getValue() != null)
+        {
+            node.getValue().apply(this);
+        }
+        outAValueExpression(node);
+    }
+
+    public void inASumSum(ASumSum node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASumSum(ASumSum node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseASumSum(ASumSum node)
+    {
+        inASumSum(node);
+        if(node.getTerm() != null)
+        {
+            node.getTerm().apply(this);
+        }
+        if(node.getPlus() != null)
+        {
+            node.getPlus().apply(this);
+        }
+        if(node.getSum() != null)
+        {
+            node.getSum().apply(this);
+        }
+        outASumSum(node);
+    }
+
+    public void inAMinusSum(AMinusSum node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMinusSum(AMinusSum node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAMinusSum(AMinusSum node)
+    {
+        inAMinusSum(node);
+        if(node.getTerm() != null)
+        {
+            node.getTerm().apply(this);
+        }
+        if(node.getMinus() != null)
+        {
+            node.getMinus().apply(this);
+        }
+        if(node.getSum() != null)
+        {
+            node.getSum().apply(this);
+        }
+        outAMinusSum(node);
+    }
+
+    public void inATermSum(ATermSum node)
+    {
+        defaultIn(node);
+    }
+
+    public void outATermSum(ATermSum node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseATermSum(ATermSum node)
+    {
+        inATermSum(node);
+        if(node.getTerm() != null)
+        {
+            node.getTerm().apply(this);
+        }
+        outATermSum(node);
+    }
+
+    public void inAMultTerm(AMultTerm node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultTerm(AMultTerm node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAMultTerm(AMultTerm node)
+    {
+        inAMultTerm(node);
+        if(node.getPower() != null)
+        {
+            node.getPower().apply(this);
+        }
+        if(node.getMult() != null)
+        {
+            node.getMult().apply(this);
+        }
+        if(node.getTerm() != null)
+        {
+            node.getTerm().apply(this);
+        }
+        outAMultTerm(node);
+    }
+
+    public void inADivTerm(ADivTerm node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADivTerm(ADivTerm node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseADivTerm(ADivTerm node)
+    {
+        inADivTerm(node);
+        if(node.getPower() != null)
+        {
+            node.getPower().apply(this);
+        }
+        if(node.getDiv() != null)
+        {
+            node.getDiv().apply(this);
+        }
+        if(node.getTerm() != null)
+        {
+            node.getTerm().apply(this);
+        }
+        outADivTerm(node);
+    }
+
+    public void inAModuloTerm(AModuloTerm node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAModuloTerm(AModuloTerm node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAModuloTerm(AModuloTerm node)
+    {
+        inAModuloTerm(node);
+        if(node.getPower() != null)
+        {
+            node.getPower().apply(this);
+        }
+        if(node.getMode() != null)
+        {
+            node.getMode().apply(this);
+        }
+        if(node.getTerm() != null)
+        {
+            node.getTerm().apply(this);
+        }
+        outAModuloTerm(node);
+    }
+
+    public void inAPowerTerm(APowerTerm node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAPowerTerm(APowerTerm node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAPowerTerm(APowerTerm node)
+    {
+        inAPowerTerm(node);
+        if(node.getPower() != null)
+        {
+            node.getPower().apply(this);
+        }
+        outAPowerTerm(node);
+    }
+
+    public void inAExpPower(AExpPower node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAExpPower(AExpPower node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAExpPower(AExpPower node)
+    {
+        inAExpPower(node);
+        if(node.getSubscription() != null)
+        {
+            node.getSubscription().apply(this);
+        }
+        if(node.getDmult() != null)
+        {
+            node.getDmult().apply(this);
+        }
+        if(node.getPower() != null)
+        {
+            node.getPower().apply(this);
+        }
+        outAExpPower(node);
+    }
+
+    public void inASubscriptionPower(ASubscriptionPower node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASubscriptionPower(ASubscriptionPower node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseASubscriptionPower(ASubscriptionPower node)
+    {
+        inASubscriptionPower(node);
+        if(node.getSubscription() != null)
+        {
+            node.getSubscription().apply(this);
+        }
+        outASubscriptionPower(node);
+    }
+
+    public void inASubscriptionSubscription(ASubscriptionSubscription node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASubscriptionSubscription(ASubscriptionSubscription node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseASubscriptionSubscription(ASubscriptionSubscription node)
+    {
+        inASubscriptionSubscription(node);
+        if(node.getRBr() != null)
+        {
+            node.getRBr().apply(this);
+        }
+        if(node.getFunc() != null)
+        {
+            node.getFunc().apply(this);
+        }
+        if(node.getLBr() != null)
+        {
+            node.getLBr().apply(this);
+        }
+        if(node.getIdentifier() != null)
+        {
+            node.getIdentifier().apply(this);
+        }
+        outASubscriptionSubscription(node);
+    }
+
+    public void inAFuncSubscription(AFuncSubscription node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAFuncSubscription(AFuncSubscription node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAFuncSubscription(AFuncSubscription node)
+    {
+        inAFuncSubscription(node);
+        if(node.getFunc() != null)
+        {
+            node.getFunc().apply(this);
+        }
+        outAFuncSubscription(node);
+    }
+
+    public void inAOpenFunc(AOpenFunc node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOpenFunc(AOpenFunc node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAOpenFunc(AOpenFunc node)
+    {
+        inAOpenFunc(node);
+        if(node.getRPar() != null)
+        {
+            node.getRPar().apply(this);
+        }
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        if(node.getComma() != null)
+        {
+            node.getComma().apply(this);
+        }
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        if(node.getLPar() != null)
+        {
+            node.getLPar().apply(this);
+        }
+        if(node.getOpen() != null)
+        {
+            node.getOpen().apply(this);
+        }
+        outAOpenFunc(node);
+    }
+
+    public void inATypeFunc(ATypeFunc node)
+    {
+        defaultIn(node);
+    }
+
+    public void outATypeFunc(ATypeFunc node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseATypeFunc(ATypeFunc node)
+    {
+        inATypeFunc(node);
+        if(node.getRPar() != null)
+        {
+            node.getRPar().apply(this);
+        }
+        if(node.getIdentifier() != null)
+        {
+            node.getIdentifier().apply(this);
+        }
+        if(node.getLPar() != null)
+        {
+            node.getLPar().apply(this);
+        }
+        if(node.getType() != null)
+        {
+            node.getType().apply(this);
+        }
+        outATypeFunc(node);
+    }
+
+    public void inAMaxFunc(AMaxFunc node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMaxFunc(AMaxFunc node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAMaxFunc(AMaxFunc node)
+    {
+        inAMaxFunc(node);
+        if(node.getRPar() != null)
+        {
+            node.getRPar().apply(this);
+        }
+        {
+            Object temp[] = node.getCommaValue().toArray();
+            for(int i = temp.length - 1; i >= 0; i--)
+            {
+                ((PCommaValue) temp[i]).apply(this);
+            }
+        }
+        if(node.getValue() != null)
+        {
+            node.getValue().apply(this);
+        }
+        if(node.getLPar() != null)
+        {
+            node.getLPar().apply(this);
+        }
+        if(node.getMax() != null)
+        {
+            node.getMax().apply(this);
+        }
+        outAMaxFunc(node);
+    }
+
+    public void inAMinFunc(AMinFunc node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMinFunc(AMinFunc node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAMinFunc(AMinFunc node)
+    {
+        inAMinFunc(node);
+        if(node.getRPar() != null)
+        {
+            node.getRPar().apply(this);
+        }
+        {
+            Object temp[] = node.getCommaValue().toArray();
+            for(int i = temp.length - 1; i >= 0; i--)
+            {
+                ((PCommaValue) temp[i]).apply(this);
+            }
+        }
+        if(node.getValue() != null)
+        {
+            node.getValue().apply(this);
+        }
+        if(node.getLPar() != null)
+        {
+            node.getLPar().apply(this);
+        }
+        if(node.getMin() != null)
+        {
+            node.getMin().apply(this);
+        }
+        outAMinFunc(node);
+    }
+
+    public void inAFuncFunc(AFuncFunc node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAFuncFunc(AFuncFunc node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAFuncFunc(AFuncFunc node)
+    {
+        inAFuncFunc(node);
+        if(node.getFunctionCall() != null)
+        {
+            node.getFunctionCall().apply(this);
+        }
+        outAFuncFunc(node);
+    }
+
+    public void inAParFunc(AParFunc node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAParFunc(AParFunc node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAParFunc(AParFunc node)
+    {
+        inAParFunc(node);
+        if(node.getPar() != null)
+        {
+            node.getPar().apply(this);
+        }
+        outAParFunc(node);
+    }
+
+    public void inACommaValue(ACommaValue node)
+    {
+        defaultIn(node);
+    }
+
+    public void outACommaValue(ACommaValue node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseACommaValue(ACommaValue node)
+    {
+        inACommaValue(node);
+        if(node.getValue() != null)
+        {
+            node.getValue().apply(this);
+        }
+        if(node.getComma() != null)
+        {
+            node.getComma().apply(this);
+        }
+        outACommaValue(node);
+    }
+
+    public void inAParPar(AParPar node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAParPar(AParPar node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAParPar(AParPar node)
+    {
+        inAParPar(node);
+        if(node.getRPar() != null)
+        {
+            node.getRPar().apply(this);
+        }
+        if(node.getExpression() != null)
+        {
+            node.getExpression().apply(this);
+        }
+        if(node.getLPar() != null)
+        {
+            node.getLPar().apply(this);
+        }
+        outAParPar(node);
+    }
+
+    public void inAExpressionPar(AExpressionPar node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAExpressionPar(AExpressionPar node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAExpressionPar(AExpressionPar node)
+    {
+        inAExpressionPar(node);
+        if(node.getExpression() != null)
+        {
+            node.getExpression().apply(this);
+        }
+        outAExpressionPar(node);
     }
 
     public void inAComparison(AComparison node)
