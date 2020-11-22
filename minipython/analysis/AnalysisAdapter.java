@@ -63,6 +63,150 @@ public class AnalysisAdapter implements Analysis
             this.out.remove(node);
         }
     }
+    public void caseStart(Start node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAGoal(AGoal node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAFuncCommand(AFuncCommand node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAStatementCommand(AStatementCommand node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAFunction(AFunction node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAArgument(AArgument node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseACommaIdAssignValue(ACommaIdAssignValue node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAAssignValue(AAssignValue node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAIfStatement(AIfStatement node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAWhileStatement(AWhileStatement node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAForStatement(AForStatement node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAReturnStatement(AReturnStatement node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAPrintStatement(APrintStatement node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAAssignmentStatement(AAssignmentStatement node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAAssertStatement(AAssertStatement node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAFuncCallStatement(AFuncCallStatement node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAAssignAssignmentStatement(AAssignAssignmentStatement node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAMinusAssignAssignmentStatement(AMinusAssignAssignmentStatement node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseADivAssignAssignmentStatement(ADivAssignAssignmentStatement node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAAssignListAssignmentStatement(AAssignListAssignmentStatement node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAExpression(AExpression node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAComparison(AComparison node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAFunCallValue(AFunCallValue node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseANumValue(ANumValue node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAStringValue(AStringValue node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseANumber(ANumber node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAFunctionCall(AFunctionCall node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAArglist(AArglist node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseACommaExpression(ACommaExpression node)
+    {
+        defaultCase(node);
+    }
 
     public void caseTLineComment(TLineComment node)
     {
@@ -75,6 +219,16 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseTAssign(TAssign node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTMinusAssign(TMinusAssign node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTDivAssign(TDivAssign node)
     {
         defaultCase(node);
     }
@@ -114,7 +268,12 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseTGqmark(TGqmark node)
+    public void caseTSemi(TSemi node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTDot(TDot node)
     {
         defaultCase(node);
     }
@@ -150,6 +309,11 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseTIf(TIf node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTIn(TIn node)
     {
         defaultCase(node);
     }
@@ -264,7 +428,17 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseTSemi(TSemi node)
+    public void caseTAnd(TAnd node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTOr(TOr node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTColon(TColon node)
     {
         defaultCase(node);
     }

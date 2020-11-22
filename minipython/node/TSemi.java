@@ -8,12 +8,12 @@ public final class TSemi extends Token
 {
     public TSemi()
     {
-        super.setText(":");
+        super.setText(";");
     }
 
     public TSemi(int line, int pos)
     {
-        super.setText(":");
+        super.setText(";");
         setLine(line);
         setPos(pos);
     }

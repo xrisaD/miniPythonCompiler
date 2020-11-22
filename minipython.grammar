@@ -11,13 +11,17 @@ Helpers
 	lf = 10;
 	all = [0..127]; 
 	eol = lf | cr | cr lf ;
-	not_eol = [all - [cr + lf]]; 
+	not_eol = [all - [cr + lf]];
+	d_quote = '"';
+    s_quote = ''';
 
 Tokens
 	line_comment = '#' not_eol* eol; 
 
 	tab = 9;
 	assign = '=';
+	minus_assign = '-=';
+	div_assign = '/=';
 	exclam = '!';
 	l_par = '(';
 	r_par = ')';
@@ -25,7 +29,8 @@ Tokens
 	r_br = ']';
 	comma=',';
 	qmark = '?';
-	gqmark = ';';
+	semi = ';';
+    dot = '.';
 
 	plus = '+';
 	minus = '-';
@@ -36,6 +41,7 @@ Tokens
 
 
 	if = 'if';
+	in = 'in';
 	elif = 'elif';
 	else = 'else';
 	while = 'while';
@@ -65,38 +71,53 @@ Tokens
 	and = 'and';
 	or = 'or';
 
-	semi = ':';
+	colon = ':';
 	quote = '"';
 	blank = (' ' | lf | cr);
 	integer_literal = digit+ | (digit+ '.' digit+);
-	identifier = letter (letter | digit)*;
-	string_literal = '"'not_eol* '"';
+	identifier = letter (letter | digit | '_')*;
+	string_literal = d_quote not_eol* d_quote|s_quote not_eol* s_quote;
 
 Ignored Tokens
 	blank, line_comment;
 
 Productions
-	programme = commands*;
+	goal = command*;
 
-	commands ={stat} statement|
-				 {expr}expression;
+	command = {func} function | {statement} statement;
 
-	statement ={if}tab* if  comparison semi statement |
-				  {assign}tab* identifier eq expression |
-				  {print}tab* print expression;
+	function = def identifier l_par argument? r_par colon statement;
 
-	comparison = {true} true|
-					 {false} false|
-					 {lessc} [lpar]:expression less [rpar]:expression|
-					 {greatc}[lpar]:expression great [rpar]:expression;
+    argument = identifier assign_value? comma_id_assign_value*;
 
-	expression = {multiplication} multiplication |
-					{addition} expression plus multiplication|
-					{subtraction} expression minus multiplication;
+    comma_id_assign_value = comma identifier assign_value?;
+    assign_value = assign value;
 
-	multiplication = {something} something |
-						  {multiplication} multiplication mult something;
 
-	something ={identifier} identifier|
-				  {numb} integer_literal|
-				  {par} l_par expression r_par;
+    statement = {if}tab* if comparison colon statement|
+                {while}tab* while comparison colon statement|
+                {for}tab* for [id1]: identifier in [id2]: identifier colon statement|
+                {return}tab* return expression|
+                {print}tab* print expression comma_expression*|
+                {assignment}tab* assignment_statement|
+                {assert}tab* assert expression comma_expression?|
+                {func_call} function_call;
+
+    assignment_statement = {assign}identifier assign expression|
+                            {minus_assign}identifier minus_assign expression|
+                            {div_assign}identifier div_assign expression|
+                            {assign_list}identifier l_br [ex1]: expression r_br assign [ex2]: expression;
+    expression = true;
+    comparison = true;
+
+    value = {fun_call}identifier dot function_call |
+            {num}number |
+            {string}string_literal;
+
+    number = integer_literal;
+
+    function_call = identifier l_par arglist? r_par;
+
+    arglist = expression comma_expression*;
+
+    comma_expression = comma expression;
