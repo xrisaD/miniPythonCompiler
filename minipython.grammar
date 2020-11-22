@@ -70,6 +70,7 @@ Tokens
 
 	and = 'and';
 	or = 'or';
+	not = 'not';
 
 	colon = ':';
 	quote = '"';
@@ -101,15 +102,14 @@ Productions
                 {print}tab* print expression comma_expression*|
                 {assignment}tab* assignment_statement|
                 {assert}tab* assert expression comma_expression?|
-                {func_call} function_call;
+                {func_call}tab* function_call;
 
     assignment_statement = {assign}identifier assign expression|
                             {minus_assign}identifier minus_assign expression|
                             {div_assign}identifier div_assign expression|
                             {assign_list}identifier l_br [ex1]: expression r_br assign [ex2]: expression;
 
-    expression = {sum} sum | 
-		{value} value;
+    expression = sum;
 
     sum = {sum} sum plus term |
 	{minus} sum minus term |
@@ -123,7 +123,7 @@ Productions
     power = {exp} power dmult subscription |
 	    {subscription} subscription;
 
-    subscription = {subscription} identifier l_br func r_br |
+    subscription = {subscription} identifier l_br expression r_br |
 	   	   {func} func ;
 
     func = {open} open l_par [left]: expression comma [right]: expression r_par |
@@ -136,10 +136,32 @@ Productions
     comma_value = comma value;
 
     par = {par} l_par expression r_par |
-	  {expression} expression ;
+	  {something} something ;
+
+    something = {value} value |
+		{identifier} identifier;
 	  
 
-    comparison = true;
+    comparison = disjunction;
+
+    disjunction = {or} disjunction or conjuction |
+		  {and} conjuction;
+
+    conjuction = {and} conjuction and negated |
+		 {not} negated;
+
+    negated = {negated} not clause |
+	     {clause}clause;
+
+    clause = {great} [lhs]: expression great [rhs]: expression|
+	     {less} [lhs]: expression less [rhs]: expression |
+	     {leq} [lhs]: expression leq [rhs]: expression |
+	     {geq} [lhs]: expression geq [rhs]: expression |
+	     {neq} [lhs]: expression neq [rhs]: expression |
+	     {eq} [lhs]: expression eq [rhs]: expression |
+	     {literal} boolean_literal;
+
+    boolean_literal = {true} true | {false} false;
 
     value = {fun_call}identifier dot function_call |
             {num}number |

@@ -4,13 +4,5 @@
 def fib(n):    # write Fibonacci series up to n
                a = 0
                b = 1
-               while a < n:
-                        print a
+               while true:
                         a = b
-                        b = a + b
-                      
-def funcwithdef(name,university="aueb"):
-       print name, " studies in ", university
-
-f = open("testfile")
-please no

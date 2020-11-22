@@ -163,12 +163,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseASumExpression(ASumExpression node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAValueExpression(AValueExpression node)
+    public void caseAExpression(AExpression node)
     {
         defaultCase(node);
     }
@@ -268,12 +263,97 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAExpressionPar(AExpressionPar node)
+    public void caseASomethingPar(ASomethingPar node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAValueSomething(AValueSomething node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAIdentifierSomething(AIdentifierSomething node)
     {
         defaultCase(node);
     }
 
     public void caseAComparison(AComparison node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAOrDisjunction(AOrDisjunction node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAAndDisjunction(AAndDisjunction node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAAndConjuction(AAndConjuction node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseANotConjuction(ANotConjuction node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseANegatedNegated(ANegatedNegated node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAClauseNegated(AClauseNegated node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAGreatClause(AGreatClause node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseALessClause(ALessClause node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseALeqClause(ALeqClause node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAGeqClause(AGeqClause node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseANeqClause(ANeqClause node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAEqClause(AEqClause node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseALiteralClause(ALiteralClause node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseATrueBooleanLiteral(ATrueBooleanLiteral node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAFalseBooleanLiteral(AFalseBooleanLiteral node)
     {
         defaultCase(node);
     }
@@ -539,6 +619,11 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseTOr(TOr node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseTNot(TNot node)
     {
         defaultCase(node);
     }

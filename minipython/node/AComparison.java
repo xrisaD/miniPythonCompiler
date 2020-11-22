@@ -7,22 +7,22 @@ import minipython.analysis.*;
 
 public final class AComparison extends PComparison
 {
-    private TTrue _true_;
+    private PDisjunction _disjunction_;
 
     public AComparison()
     {
     }
 
     public AComparison(
-        TTrue _true_)
+        PDisjunction _disjunction_)
     {
-        setTrue(_true_);
+        setDisjunction(_disjunction_);
 
     }
     public Object clone()
     {
         return new AComparison(
-            (TTrue) cloneNode(_true_));
+            (PDisjunction) cloneNode(_disjunction_));
     }
 
     public void apply(Switch sw)
@@ -30,16 +30,16 @@ public final class AComparison extends PComparison
         ((Analysis) sw).caseAComparison(this);
     }
 
-    public TTrue getTrue()
+    public PDisjunction getDisjunction()
     {
-        return _true_;
+        return _disjunction_;
     }
 
-    public void setTrue(TTrue node)
+    public void setDisjunction(PDisjunction node)
     {
-        if(_true_ != null)
+        if(_disjunction_ != null)
         {
-            _true_.parent(null);
+            _disjunction_.parent(null);
         }
 
         if(node != null)
@@ -52,20 +52,20 @@ public final class AComparison extends PComparison
             node.parent(this);
         }
 
-        _true_ = node;
+        _disjunction_ = node;
     }
 
     public String toString()
     {
         return ""
-            + toString(_true_);
+            + toString(_disjunction_);
     }
 
     void removeChild(Node child)
     {
-        if(_true_ == child)
+        if(_disjunction_ == child)
         {
-            _true_ = null;
+            _disjunction_ = null;
             return;
         }
 
@@ -73,9 +73,9 @@ public final class AComparison extends PComparison
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_true_ == oldChild)
+        if(_disjunction_ == oldChild)
         {
-            setTrue((TTrue) newChild);
+            setDisjunction((PDisjunction) newChild);
             return;
         }
 

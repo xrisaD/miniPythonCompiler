@@ -9,7 +9,7 @@ public final class ASubscriptionSubscription extends PSubscription
 {
     private TIdentifier _identifier_;
     private TLBr _lBr_;
-    private PFunc _func_;
+    private PExpression _expression_;
     private TRBr _rBr_;
 
     public ASubscriptionSubscription()
@@ -19,14 +19,14 @@ public final class ASubscriptionSubscription extends PSubscription
     public ASubscriptionSubscription(
         TIdentifier _identifier_,
         TLBr _lBr_,
-        PFunc _func_,
+        PExpression _expression_,
         TRBr _rBr_)
     {
         setIdentifier(_identifier_);
 
         setLBr(_lBr_);
 
-        setFunc(_func_);
+        setExpression(_expression_);
 
         setRBr(_rBr_);
 
@@ -36,7 +36,7 @@ public final class ASubscriptionSubscription extends PSubscription
         return new ASubscriptionSubscription(
             (TIdentifier) cloneNode(_identifier_),
             (TLBr) cloneNode(_lBr_),
-            (PFunc) cloneNode(_func_),
+            (PExpression) cloneNode(_expression_),
             (TRBr) cloneNode(_rBr_));
     }
 
@@ -95,16 +95,16 @@ public final class ASubscriptionSubscription extends PSubscription
         _lBr_ = node;
     }
 
-    public PFunc getFunc()
+    public PExpression getExpression()
     {
-        return _func_;
+        return _expression_;
     }
 
-    public void setFunc(PFunc node)
+    public void setExpression(PExpression node)
     {
-        if(_func_ != null)
+        if(_expression_ != null)
         {
-            _func_.parent(null);
+            _expression_.parent(null);
         }
 
         if(node != null)
@@ -117,7 +117,7 @@ public final class ASubscriptionSubscription extends PSubscription
             node.parent(this);
         }
 
-        _func_ = node;
+        _expression_ = node;
     }
 
     public TRBr getRBr()
@@ -150,7 +150,7 @@ public final class ASubscriptionSubscription extends PSubscription
         return ""
             + toString(_identifier_)
             + toString(_lBr_)
-            + toString(_func_)
+            + toString(_expression_)
             + toString(_rBr_);
     }
 
@@ -168,9 +168,9 @@ public final class ASubscriptionSubscription extends PSubscription
             return;
         }
 
-        if(_func_ == child)
+        if(_expression_ == child)
         {
-            _func_ = null;
+            _expression_ = null;
             return;
         }
 
@@ -196,9 +196,9 @@ public final class ASubscriptionSubscription extends PSubscription
             return;
         }
 
-        if(_func_ == oldChild)
+        if(_expression_ == oldChild)
         {
-            setFunc((PFunc) newChild);
+            setExpression((PExpression) newChild);
             return;
         }
 

@@ -234,33 +234,38 @@ class TokenIndex extends AnalysisAdapter
         index = 44;
     }
 
-    public void caseTColon(TColon node)
+    public void caseTNot(TNot node)
     {
         index = 45;
     }
 
-    public void caseTQuote(TQuote node)
+    public void caseTColon(TColon node)
     {
         index = 46;
     }
 
-    public void caseTIntegerLiteral(TIntegerLiteral node)
+    public void caseTQuote(TQuote node)
     {
         index = 47;
     }
 
-    public void caseTIdentifier(TIdentifier node)
+    public void caseTIntegerLiteral(TIntegerLiteral node)
     {
         index = 48;
     }
 
-    public void caseTStringLiteral(TStringLiteral node)
+    public void caseTIdentifier(TIdentifier node)
     {
         index = 49;
     }
 
-    public void caseEOF(EOF node)
+    public void caseTStringLiteral(TStringLiteral node)
     {
         index = 50;
+    }
+
+    public void caseEOF(EOF node)
+    {
+        index = 51;
     }
 }
