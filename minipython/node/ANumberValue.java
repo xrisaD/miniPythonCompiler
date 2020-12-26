@@ -7,22 +7,22 @@ import minipython.analysis.*;
 
 public final class ANumberValue extends PValue
 {
-    private PNumber _number_;
+    private TIntegerLiteral _integerLiteral_;
 
     public ANumberValue()
     {
     }
 
     public ANumberValue(
-        PNumber _number_)
+        TIntegerLiteral _integerLiteral_)
     {
-        setNumber(_number_);
+        setIntegerLiteral(_integerLiteral_);
 
     }
     public Object clone()
     {
         return new ANumberValue(
-            (PNumber) cloneNode(_number_));
+            (TIntegerLiteral) cloneNode(_integerLiteral_));
     }
 
     public void apply(Switch sw)
@@ -30,16 +30,16 @@ public final class ANumberValue extends PValue
         ((Analysis) sw).caseANumberValue(this);
     }
 
-    public PNumber getNumber()
+    public TIntegerLiteral getIntegerLiteral()
     {
-        return _number_;
+        return _integerLiteral_;
     }
 
-    public void setNumber(PNumber node)
+    public void setIntegerLiteral(TIntegerLiteral node)
     {
-        if(_number_ != null)
+        if(_integerLiteral_ != null)
         {
-            _number_.parent(null);
+            _integerLiteral_.parent(null);
         }
 
         if(node != null)
@@ -52,20 +52,20 @@ public final class ANumberValue extends PValue
             node.parent(this);
         }
 
-        _number_ = node;
+        _integerLiteral_ = node;
     }
 
     public String toString()
     {
         return ""
-            + toString(_number_);
+            + toString(_integerLiteral_);
     }
 
     void removeChild(Node child)
     {
-        if(_number_ == child)
+        if(_integerLiteral_ == child)
         {
-            _number_ = null;
+            _integerLiteral_ = null;
             return;
         }
 
@@ -73,9 +73,9 @@ public final class ANumberValue extends PValue
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_number_ == oldChild)
+        if(_integerLiteral_ == oldChild)
         {
-            setNumber((PNumber) newChild);
+            setIntegerLiteral((TIntegerLiteral) newChild);
             return;
         }
 

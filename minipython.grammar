@@ -90,28 +90,28 @@ Productions
 	command = {func} function {-> New command.func(function)}|
 	           {statement} statement {-> New command.statement(statement)};
 
-	function = def identifier l_par argument? r_par colon statement {-> New function(New id(identifier), [argument.identifier_value], statement)};
+	function = def identifier l_par argument? r_par colon statement {-> New function(identifier, [argument.identifier_value], statement)};
 
     argument{-> identifier_value*} = identifier_assign_value comma_id_assign_value* {-> [identifier_assign_value.identifier_value comma_id_assign_value.identifier_value]};
 
-    identifier_assign_value{->identifier_value} = identifier assign_value?{-> New identifier_value(New id(identifier), assign_value.value) };
+    identifier_assign_value{->identifier_value} = identifier assign_value?{-> New identifier_value(identifier, assign_value.value) };
     comma_id_assign_value{->identifier_value} = comma identifier_assign_value? {-> identifier_assign_value.identifier_value};
     assign_value{-> value} = assign value{-> value.value};
 
 
     statement = {if}tab* if comparison colon statement {-> New statement.if(comparison, statement)} |
                 {while}tab* while comparison colon statement {-> New statement.while(comparison, statement)} |
-                {for}tab* for [id1]: identifier in [id2]: identifier colon statement {-> New statement.for(New id(id1), New id(id2), statement)} |
+                {for}tab* for [id1]: identifier in [id2]: identifier colon statement {-> New statement.for(id1, id2, statement)} |
                 {return}tab* return expression {-> New statement.return(expression)}|
                 {print}tab* print expression comma_expression* {-> New statement.print(expression, [comma_expression.expression])}|
                 {assignment}tab* assignment_statement {-> assignment_statement.statement}|
                 {assert}tab* assert expression comma_expression? {-> New statement.assert(expression, comma_expression.expression)}|
                 {func_call}tab* function_call {-> New statement.func_call(function_call)};
 
-    assignment_statement{->statement} = {assign}identifier assign expression {-> New statement.assign(New id(identifier),expression)}|
-                            {minus_assign}identifier minus_assign expression {-> New statement.minus_assign(New id(identifier),expression)}|
-                            {div_assign}identifier div_assign expression {-> New statement.div_assign(New id(identifier),expression)}|
-                            {assign_list}identifier l_br [ex1]: expression r_br assign [ex2]: expression {-> New statement.assign_list(New id(identifier),ex1,ex2)};
+    assignment_statement{->statement} = {assign}identifier assign expression {-> New statement.assign(identifier,expression)}|
+                            {minus_assign}identifier minus_assign expression {-> New statement.minus_assign(identifier,expression)}|
+                            {div_assign}identifier div_assign expression {-> New statement.div_assign(identifier,expression)}|
+                            {assign_list}identifier l_br [ex1]: expression r_br assign [ex2]: expression {-> New statement.assign_list(identifier,ex1,ex2)};
 
     expression = sum{-> sum.expression};
 
@@ -127,11 +127,11 @@ Productions
     power{->expression} = {exp} power dmult subscription {-> New expression.pow(power.expression, subscription.expression)}|
 	    {subscription} subscription {-> subscription.expression};
 
-    subscription{->expression} = {subscription} identifier l_br expression r_br {-> New expression.subscription(New id(identifier), expression)}|
+    subscription{->expression} = {subscription} identifier l_br expression r_br {-> New expression.subscription(identifier, expression)}|
 	   	   {func} func {-> func.expression};
 
     func{-> expression} = {open} open l_par [left]: expression comma [right]: expression r_par {-> New expression.open(left, right)}|
-	   {type} type l_par identifier r_par {-> New expression.type(New id(identifier))}|
+	   {type} type l_par identifier r_par {-> New expression.type(identifier)}|
 	   {max} max l_par value comma_value+ r_par {-> New expression.max(value, [comma_value.value])}|
 	   {min} min l_par value comma_value+ r_par {-> New expression.min(value, [comma_value.value])}|
 	   {func} function_call {-> New expression.func_call(function_call)}|
@@ -144,7 +144,7 @@ Productions
 	                      {something} something {-> something.expression};
 
     something{-> expression} = {value} value {-> New expression.value(value)}|
-		{identifier} identifier {-> New expression.identifier(New id(identifier))};
+		{identifier} identifier {-> New expression.identifier(identifier)};
 	  
 
     comparison = disjunction {-> disjunction.comparison};
@@ -169,14 +169,14 @@ Productions
     boolean_literal{-> comparison} = {true} true {-> New comparison.true()}|
                                     {false} false {-> New comparison.false()};
 
-    value{-> value} = {fun_call}identifier dot function_call {-> New value.method(New id(identifier), function_call)}|
-            {num}number {-> New value.number(number)}|
+    value{-> value} = {fun_call}identifier dot function_call {-> New value.method(identifier, function_call)}|
+            {num}number {-> number.value}|
             {string}string_literal {-> New value.string(string_literal)}|
             {none} none {-> New value.none(none)};
 
-    number = integer_literal {-> New number(integer_literal)};
+    number{->value} = integer_literal {-> New value.number(integer_literal)};
 
-    function_call = identifier l_par arglist? r_par {-> New function_call(New id(identifier), [arglist.expression])};
+    function_call = identifier l_par arglist? r_par {-> New function_call(identifier, [arglist.expression])};
 
     arglist{-> expression*} = expression comma_expression* {-> [expression comma_expression.expression]};
 
@@ -185,21 +185,21 @@ Productions
 Abstract Syntax Tree
     goal = command*;
     command = {func} function | {statement} statement ;
-    function =  id identifier_value* statement;
+    function =  identifier identifier_value* statement;
     argument = [id1]:identifier_value [id2]:identifier_value*;
-    identifier_value = id value?;
+    identifier_value = identifier value?;
 
     statement = {if} comparison statement|
                 {while} comparison statement|
-                {for}[id1]: id [id2]: id statement|
+                {for}[id1]: identifier [id2]: identifier statement|
                 {return}expression|
                 {print} [exp1]:expression [exp2]:expression*|
                 {assert}[exp1]:expression [exp2]:expression?|
                 {func_call} function_call|
-                {assign}id expression|
-                {minus_assign}id expression|
-                {div_assign}id expression|
-                {assign_list}id [ex1]: expression [ex2]: expression;
+                {assign}identifier expression|
+                {minus_assign}identifier expression|
+                {div_assign}identifier expression|
+                {assign_list}identifier [ex1]: expression [ex2]: expression;
 
     expression = {sum} [e1]:expression [e2]:expression |
                  {minus} [e1]:expression [e2]:expression |
@@ -207,12 +207,12 @@ Abstract Syntax Tree
                  {div} [e1]:expression [e2]:expression |
                  {modulo} [e1]:expression [e2]:expression |
                  {pow} [e1]:expression [e2]:expression |
-                 {subscription} id expression |
+                 {subscription} identifier expression |
                  {func_call} function_call |
                  {value} value |
-                 {identifier} id |
+                 {identifier} identifier |
                  {open} [e1]:expression [e2]:expression |
-                 {type} id |
+                 {type} identifier |
                  {max} [v1]:value [v2]:value+|
                  {min} [v1]:value [v2]:value+|
                  {par} expression |
@@ -230,9 +230,6 @@ Abstract Syntax Tree
                  {true}|
                  {false};
 
-    function_call = id expression*;
+    function_call = identifier expression*;
 
-
-    id=identifier;
-    value = {method} id function_call|{number}number|{string}string_literal|{none}none;
-    number = integer_literal;
+    value = {method} identifier function_call|{number}integer_literal|{string}string_literal|{none}none;

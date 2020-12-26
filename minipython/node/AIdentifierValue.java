@@ -7,7 +7,7 @@ import minipython.analysis.*;
 
 public final class AIdentifierValue extends PIdentifierValue
 {
-    private PId _id_;
+    private TIdentifier _identifier_;
     private PValue _value_;
 
     public AIdentifierValue()
@@ -15,10 +15,10 @@ public final class AIdentifierValue extends PIdentifierValue
     }
 
     public AIdentifierValue(
-        PId _id_,
+        TIdentifier _identifier_,
         PValue _value_)
     {
-        setId(_id_);
+        setIdentifier(_identifier_);
 
         setValue(_value_);
 
@@ -26,7 +26,7 @@ public final class AIdentifierValue extends PIdentifierValue
     public Object clone()
     {
         return new AIdentifierValue(
-            (PId) cloneNode(_id_),
+            (TIdentifier) cloneNode(_identifier_),
             (PValue) cloneNode(_value_));
     }
 
@@ -35,16 +35,16 @@ public final class AIdentifierValue extends PIdentifierValue
         ((Analysis) sw).caseAIdentifierValue(this);
     }
 
-    public PId getId()
+    public TIdentifier getIdentifier()
     {
-        return _id_;
+        return _identifier_;
     }
 
-    public void setId(PId node)
+    public void setIdentifier(TIdentifier node)
     {
-        if(_id_ != null)
+        if(_identifier_ != null)
         {
-            _id_.parent(null);
+            _identifier_.parent(null);
         }
 
         if(node != null)
@@ -57,7 +57,7 @@ public final class AIdentifierValue extends PIdentifierValue
             node.parent(this);
         }
 
-        _id_ = node;
+        _identifier_ = node;
     }
 
     public PValue getValue()
@@ -88,15 +88,15 @@ public final class AIdentifierValue extends PIdentifierValue
     public String toString()
     {
         return ""
-            + toString(_id_)
+            + toString(_identifier_)
             + toString(_value_);
     }
 
     void removeChild(Node child)
     {
-        if(_id_ == child)
+        if(_identifier_ == child)
         {
-            _id_ = null;
+            _identifier_ = null;
             return;
         }
 
@@ -110,9 +110,9 @@ public final class AIdentifierValue extends PIdentifierValue
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_id_ == oldChild)
+        if(_identifier_ == oldChild)
         {
-            setId((PId) newChild);
+            setIdentifier((TIdentifier) newChild);
             return;
         }
 

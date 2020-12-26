@@ -1131,20 +1131,15 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PFunction pfunctionNode1;
         {
-        PId pidNode2;
-        TypedLinkedList listNode4 = new TypedLinkedList();
-        PStatement pstatementNode5;
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList2.get(0);
-
-        pidNode2 = new AId(tidentifierNode3);
-        }
+        TIdentifier tidentifierNode2;
+        TypedLinkedList listNode3 = new TypedLinkedList();
+        PStatement pstatementNode4;
+        tidentifierNode2 = (TIdentifier)nodeArrayList2.get(0);
         {
         }
-        pstatementNode5 = (PStatement)nodeArrayList6.get(0);
+        pstatementNode4 = (PStatement)nodeArrayList6.get(0);
 
-        pfunctionNode1 = new AFunction(pidNode2, listNode4, pstatementNode5);
+        pfunctionNode1 = new AFunction(tidentifierNode2, listNode3, pstatementNode4);
         }
 	nodeList.add(pfunctionNode1);
         return nodeList;
@@ -1165,26 +1160,21 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PFunction pfunctionNode1;
         {
-        PId pidNode2;
-        TypedLinkedList listNode5 = new TypedLinkedList();
-        PStatement pstatementNode6;
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList2.get(0);
-
-        pidNode2 = new AId(tidentifierNode3);
-        }
-        {
+        TIdentifier tidentifierNode2;
         TypedLinkedList listNode4 = new TypedLinkedList();
-        listNode4 = (TypedLinkedList)nodeArrayList4.get(0);
-	if(listNode4 != null)
+        PStatement pstatementNode5;
+        tidentifierNode2 = (TIdentifier)nodeArrayList2.get(0);
+        {
+        TypedLinkedList listNode3 = new TypedLinkedList();
+        listNode3 = (TypedLinkedList)nodeArrayList4.get(0);
+	if(listNode3 != null)
 	{
-	  listNode5.addAll(listNode4);
+	  listNode4.addAll(listNode3);
 	}
         }
-        pstatementNode6 = (PStatement)nodeArrayList7.get(0);
+        pstatementNode5 = (PStatement)nodeArrayList7.get(0);
 
-        pfunctionNode1 = new AFunction(pidNode2, listNode5, pstatementNode6);
+        pfunctionNode1 = new AFunction(tidentifierNode2, listNode4, pstatementNode5);
         }
 	nodeList.add(pfunctionNode1);
         return nodeList;
@@ -1246,16 +1236,11 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PIdentifierValue pidentifiervalueNode1;
         {
-        PId pidNode2;
-        Object nullNode4 = null;
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList1.get(0);
+        TIdentifier tidentifierNode2;
+        Object nullNode3 = null;
+        tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
 
-        pidNode2 = new AId(tidentifierNode3);
-        }
-
-        pidentifiervalueNode1 = new AIdentifierValue(pidNode2, null);
+        pidentifiervalueNode1 = new AIdentifierValue(tidentifierNode2, null);
         }
 	nodeList.add(pidentifiervalueNode1);
         return nodeList;
@@ -1271,17 +1256,12 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PIdentifierValue pidentifiervalueNode1;
         {
-        PId pidNode2;
-        PValue pvalueNode4;
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList1.get(0);
+        TIdentifier tidentifierNode2;
+        PValue pvalueNode3;
+        tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
+        pvalueNode3 = (PValue)nodeArrayList2.get(0);
 
-        pidNode2 = new AId(tidentifierNode3);
-        }
-        pvalueNode4 = (PValue)nodeArrayList2.get(0);
-
-        pidentifiervalueNode1 = new AIdentifierValue(pidNode2, pvalueNode4);
+        pidentifiervalueNode1 = new AIdentifierValue(tidentifierNode2, pvalueNode3);
         }
 	nodeList.add(pidentifiervalueNode1);
         return nodeList;
@@ -1435,24 +1415,14 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PStatement pstatementNode1;
         {
-        PId pidNode2;
-        PId pidNode4;
-        PStatement pstatementNode6;
-        {
+        TIdentifier tidentifierNode2;
         TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList2.get(0);
+        PStatement pstatementNode4;
+        tidentifierNode2 = (TIdentifier)nodeArrayList2.get(0);
+        tidentifierNode3 = (TIdentifier)nodeArrayList4.get(0);
+        pstatementNode4 = (PStatement)nodeArrayList6.get(0);
 
-        pidNode2 = new AId(tidentifierNode3);
-        }
-        {
-        TIdentifier tidentifierNode5;
-        tidentifierNode5 = (TIdentifier)nodeArrayList4.get(0);
-
-        pidNode4 = new AId(tidentifierNode5);
-        }
-        pstatementNode6 = (PStatement)nodeArrayList6.get(0);
-
-        pstatementNode1 = new AForStatement(pidNode2, pidNode4, pstatementNode6);
+        pstatementNode1 = new AForStatement(tidentifierNode2, tidentifierNode3, pstatementNode4);
         }
 	nodeList.add(pstatementNode1);
         return nodeList;
@@ -1473,24 +1443,14 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PStatement pstatementNode1;
         {
-        PId pidNode2;
-        PId pidNode4;
-        PStatement pstatementNode6;
-        {
+        TIdentifier tidentifierNode2;
         TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList3.get(0);
+        PStatement pstatementNode4;
+        tidentifierNode2 = (TIdentifier)nodeArrayList3.get(0);
+        tidentifierNode3 = (TIdentifier)nodeArrayList5.get(0);
+        pstatementNode4 = (PStatement)nodeArrayList7.get(0);
 
-        pidNode2 = new AId(tidentifierNode3);
-        }
-        {
-        TIdentifier tidentifierNode5;
-        tidentifierNode5 = (TIdentifier)nodeArrayList5.get(0);
-
-        pidNode4 = new AId(tidentifierNode5);
-        }
-        pstatementNode6 = (PStatement)nodeArrayList7.get(0);
-
-        pstatementNode1 = new AForStatement(pidNode2, pidNode4, pstatementNode6);
+        pstatementNode1 = new AForStatement(tidentifierNode2, tidentifierNode3, pstatementNode4);
         }
 	nodeList.add(pstatementNode1);
         return nodeList;
@@ -1800,17 +1760,12 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PStatement pstatementNode1;
         {
-        PId pidNode2;
-        PExpression pexpressionNode4;
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList1.get(0);
+        TIdentifier tidentifierNode2;
+        PExpression pexpressionNode3;
+        tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
+        pexpressionNode3 = (PExpression)nodeArrayList3.get(0);
 
-        pidNode2 = new AId(tidentifierNode3);
-        }
-        pexpressionNode4 = (PExpression)nodeArrayList3.get(0);
-
-        pstatementNode1 = new AAssignStatement(pidNode2, pexpressionNode4);
+        pstatementNode1 = new AAssignStatement(tidentifierNode2, pexpressionNode3);
         }
 	nodeList.add(pstatementNode1);
         return nodeList;
@@ -1827,17 +1782,12 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PStatement pstatementNode1;
         {
-        PId pidNode2;
-        PExpression pexpressionNode4;
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList1.get(0);
+        TIdentifier tidentifierNode2;
+        PExpression pexpressionNode3;
+        tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
+        pexpressionNode3 = (PExpression)nodeArrayList3.get(0);
 
-        pidNode2 = new AId(tidentifierNode3);
-        }
-        pexpressionNode4 = (PExpression)nodeArrayList3.get(0);
-
-        pstatementNode1 = new AMinusAssignStatement(pidNode2, pexpressionNode4);
+        pstatementNode1 = new AMinusAssignStatement(tidentifierNode2, pexpressionNode3);
         }
 	nodeList.add(pstatementNode1);
         return nodeList;
@@ -1854,17 +1804,12 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PStatement pstatementNode1;
         {
-        PId pidNode2;
-        PExpression pexpressionNode4;
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList1.get(0);
+        TIdentifier tidentifierNode2;
+        PExpression pexpressionNode3;
+        tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
+        pexpressionNode3 = (PExpression)nodeArrayList3.get(0);
 
-        pidNode2 = new AId(tidentifierNode3);
-        }
-        pexpressionNode4 = (PExpression)nodeArrayList3.get(0);
-
-        pstatementNode1 = new ADivAssignStatement(pidNode2, pexpressionNode4);
+        pstatementNode1 = new ADivAssignStatement(tidentifierNode2, pexpressionNode3);
         }
 	nodeList.add(pstatementNode1);
         return nodeList;
@@ -1884,19 +1829,14 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PStatement pstatementNode1;
         {
-        PId pidNode2;
+        TIdentifier tidentifierNode2;
+        PExpression pexpressionNode3;
         PExpression pexpressionNode4;
-        PExpression pexpressionNode5;
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList1.get(0);
+        tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
+        pexpressionNode3 = (PExpression)nodeArrayList3.get(0);
+        pexpressionNode4 = (PExpression)nodeArrayList6.get(0);
 
-        pidNode2 = new AId(tidentifierNode3);
-        }
-        pexpressionNode4 = (PExpression)nodeArrayList3.get(0);
-        pexpressionNode5 = (PExpression)nodeArrayList6.get(0);
-
-        pstatementNode1 = new AAssignListStatement(pidNode2, pexpressionNode4, pexpressionNode5);
+        pstatementNode1 = new AAssignListStatement(tidentifierNode2, pexpressionNode3, pexpressionNode4);
         }
 	nodeList.add(pstatementNode1);
         return nodeList;
@@ -2098,17 +2038,12 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PExpression pexpressionNode1;
         {
-        PId pidNode2;
-        PExpression pexpressionNode4;
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList1.get(0);
+        TIdentifier tidentifierNode2;
+        PExpression pexpressionNode3;
+        tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
+        pexpressionNode3 = (PExpression)nodeArrayList3.get(0);
 
-        pidNode2 = new AId(tidentifierNode3);
-        }
-        pexpressionNode4 = (PExpression)nodeArrayList3.get(0);
-
-        pexpressionNode1 = new ASubscriptionExpression(pidNode2, pexpressionNode4);
+        pexpressionNode1 = new ASubscriptionExpression(tidentifierNode2, pexpressionNode3);
         }
 	nodeList.add(pexpressionNode1);
         return nodeList;
@@ -2164,15 +2099,10 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PExpression pexpressionNode1;
         {
-        PId pidNode2;
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList3.get(0);
+        TIdentifier tidentifierNode2;
+        tidentifierNode2 = (TIdentifier)nodeArrayList3.get(0);
 
-        pidNode2 = new AId(tidentifierNode3);
-        }
-
-        pexpressionNode1 = new ATypeExpression(pidNode2);
+        pexpressionNode1 = new ATypeExpression(tidentifierNode2);
         }
 	nodeList.add(pexpressionNode1);
         return nodeList;
@@ -2393,15 +2323,10 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PExpression pexpressionNode1;
         {
-        PId pidNode2;
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList1.get(0);
+        TIdentifier tidentifierNode2;
+        tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
 
-        pidNode2 = new AId(tidentifierNode3);
-        }
-
-        pexpressionNode1 = new AIdentifierExpression(pidNode2);
+        pexpressionNode1 = new AIdentifierExpression(tidentifierNode2);
         }
 	nodeList.add(pexpressionNode1);
         return nodeList;
@@ -2710,17 +2635,12 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PValue pvalueNode1;
         {
-        PId pidNode2;
-        PFunctionCall pfunctioncallNode4;
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList1.get(0);
+        TIdentifier tidentifierNode2;
+        PFunctionCall pfunctioncallNode3;
+        tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
+        pfunctioncallNode3 = (PFunctionCall)nodeArrayList3.get(0);
 
-        pidNode2 = new AId(tidentifierNode3);
-        }
-        pfunctioncallNode4 = (PFunctionCall)nodeArrayList3.get(0);
-
-        pvalueNode1 = new AMethodValue(pidNode2, pfunctioncallNode4);
+        pvalueNode1 = new AMethodValue(tidentifierNode2, pfunctioncallNode3);
         }
 	nodeList.add(pvalueNode1);
         return nodeList;
@@ -2734,12 +2654,7 @@ public class Parser
 
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PValue pvalueNode1;
-        {
-        PNumber pnumberNode2;
-        pnumberNode2 = (PNumber)nodeArrayList1.get(0);
-
-        pvalueNode1 = new ANumberValue(pnumberNode2);
-        }
+        pvalueNode1 = (PValue)nodeArrayList1.get(0);
 	nodeList.add(pvalueNode1);
         return nodeList;
     }
@@ -2787,14 +2702,14 @@ public class Parser
         ArrayList nodeList = new ArrayList();
 
         ArrayList nodeArrayList1 = (ArrayList) pop();
-        PNumber pnumberNode1;
+        PValue pvalueNode1;
         {
         TIntegerLiteral tintegerliteralNode2;
         tintegerliteralNode2 = (TIntegerLiteral)nodeArrayList1.get(0);
 
-        pnumberNode1 = new ANumber(tintegerliteralNode2);
+        pvalueNode1 = new ANumberValue(tintegerliteralNode2);
         }
-	nodeList.add(pnumberNode1);
+	nodeList.add(pvalueNode1);
         return nodeList;
     }
 
@@ -2809,18 +2724,13 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PFunctionCall pfunctioncallNode1;
         {
-        PId pidNode2;
-        TypedLinkedList listNode4 = new TypedLinkedList();
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList1.get(0);
-
-        pidNode2 = new AId(tidentifierNode3);
-        }
+        TIdentifier tidentifierNode2;
+        TypedLinkedList listNode3 = new TypedLinkedList();
+        tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
         {
         }
 
-        pfunctioncallNode1 = new AFunctionCall(pidNode2, listNode4);
+        pfunctioncallNode1 = new AFunctionCall(tidentifierNode2, listNode3);
         }
 	nodeList.add(pfunctioncallNode1);
         return nodeList;
@@ -2838,24 +2748,19 @@ public class Parser
         ArrayList nodeArrayList1 = (ArrayList) pop();
         PFunctionCall pfunctioncallNode1;
         {
-        PId pidNode2;
-        TypedLinkedList listNode5 = new TypedLinkedList();
-        {
-        TIdentifier tidentifierNode3;
-        tidentifierNode3 = (TIdentifier)nodeArrayList1.get(0);
-
-        pidNode2 = new AId(tidentifierNode3);
-        }
-        {
+        TIdentifier tidentifierNode2;
         TypedLinkedList listNode4 = new TypedLinkedList();
-        listNode4 = (TypedLinkedList)nodeArrayList3.get(0);
-	if(listNode4 != null)
+        tidentifierNode2 = (TIdentifier)nodeArrayList1.get(0);
+        {
+        TypedLinkedList listNode3 = new TypedLinkedList();
+        listNode3 = (TypedLinkedList)nodeArrayList3.get(0);
+	if(listNode3 != null)
 	{
-	  listNode5.addAll(listNode4);
+	  listNode4.addAll(listNode3);
 	}
         }
 
-        pfunctioncallNode1 = new AFunctionCall(pidNode2, listNode5);
+        pfunctioncallNode1 = new AFunctionCall(tidentifierNode2, listNode4);
         }
 	nodeList.add(pfunctioncallNode1);
         return nodeList;

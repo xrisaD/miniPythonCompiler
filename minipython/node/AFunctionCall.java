@@ -7,7 +7,7 @@ import minipython.analysis.*;
 
 public final class AFunctionCall extends PFunctionCall
 {
-    private PId _id_;
+    private TIdentifier _identifier_;
     private final LinkedList _expression_ = new TypedLinkedList(new Expression_Cast());
 
     public AFunctionCall()
@@ -15,10 +15,10 @@ public final class AFunctionCall extends PFunctionCall
     }
 
     public AFunctionCall(
-        PId _id_,
+        TIdentifier _identifier_,
         List _expression_)
     {
-        setId(_id_);
+        setIdentifier(_identifier_);
 
         {
             this._expression_.clear();
@@ -29,7 +29,7 @@ public final class AFunctionCall extends PFunctionCall
     public Object clone()
     {
         return new AFunctionCall(
-            (PId) cloneNode(_id_),
+            (TIdentifier) cloneNode(_identifier_),
             cloneList(_expression_));
     }
 
@@ -38,16 +38,16 @@ public final class AFunctionCall extends PFunctionCall
         ((Analysis) sw).caseAFunctionCall(this);
     }
 
-    public PId getId()
+    public TIdentifier getIdentifier()
     {
-        return _id_;
+        return _identifier_;
     }
 
-    public void setId(PId node)
+    public void setIdentifier(TIdentifier node)
     {
-        if(_id_ != null)
+        if(_identifier_ != null)
         {
-            _id_.parent(null);
+            _identifier_.parent(null);
         }
 
         if(node != null)
@@ -60,7 +60,7 @@ public final class AFunctionCall extends PFunctionCall
             node.parent(this);
         }
 
-        _id_ = node;
+        _identifier_ = node;
     }
 
     public LinkedList getExpression()
@@ -77,15 +77,15 @@ public final class AFunctionCall extends PFunctionCall
     public String toString()
     {
         return ""
-            + toString(_id_)
+            + toString(_identifier_)
             + toString(_expression_);
     }
 
     void removeChild(Node child)
     {
-        if(_id_ == child)
+        if(_identifier_ == child)
         {
-            _id_ = null;
+            _identifier_ = null;
             return;
         }
 
@@ -98,9 +98,9 @@ public final class AFunctionCall extends PFunctionCall
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_id_ == oldChild)
+        if(_identifier_ == oldChild)
         {
-            setId((PId) newChild);
+            setIdentifier((TIdentifier) newChild);
             return;
         }
 

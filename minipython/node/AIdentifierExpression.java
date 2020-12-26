@@ -7,22 +7,22 @@ import minipython.analysis.*;
 
 public final class AIdentifierExpression extends PExpression
 {
-    private PId _id_;
+    private TIdentifier _identifier_;
 
     public AIdentifierExpression()
     {
     }
 
     public AIdentifierExpression(
-        PId _id_)
+        TIdentifier _identifier_)
     {
-        setId(_id_);
+        setIdentifier(_identifier_);
 
     }
     public Object clone()
     {
         return new AIdentifierExpression(
-            (PId) cloneNode(_id_));
+            (TIdentifier) cloneNode(_identifier_));
     }
 
     public void apply(Switch sw)
@@ -30,16 +30,16 @@ public final class AIdentifierExpression extends PExpression
         ((Analysis) sw).caseAIdentifierExpression(this);
     }
 
-    public PId getId()
+    public TIdentifier getIdentifier()
     {
-        return _id_;
+        return _identifier_;
     }
 
-    public void setId(PId node)
+    public void setIdentifier(TIdentifier node)
     {
-        if(_id_ != null)
+        if(_identifier_ != null)
         {
-            _id_.parent(null);
+            _identifier_.parent(null);
         }
 
         if(node != null)
@@ -52,20 +52,20 @@ public final class AIdentifierExpression extends PExpression
             node.parent(this);
         }
 
-        _id_ = node;
+        _identifier_ = node;
     }
 
     public String toString()
     {
         return ""
-            + toString(_id_);
+            + toString(_identifier_);
     }
 
     void removeChild(Node child)
     {
-        if(_id_ == child)
+        if(_identifier_ == child)
         {
-            _id_ = null;
+            _identifier_ = null;
             return;
         }
 
@@ -73,9 +73,9 @@ public final class AIdentifierExpression extends PExpression
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_id_ == oldChild)
+        if(_identifier_ == oldChild)
         {
-            setId((PId) newChild);
+            setIdentifier((TIdentifier) newChild);
             return;
         }
 

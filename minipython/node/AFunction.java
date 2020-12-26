@@ -7,7 +7,7 @@ import minipython.analysis.*;
 
 public final class AFunction extends PFunction
 {
-    private PId _id_;
+    private TIdentifier _identifier_;
     private final LinkedList _identifierValue_ = new TypedLinkedList(new IdentifierValue_Cast());
     private PStatement _statement_;
 
@@ -16,11 +16,11 @@ public final class AFunction extends PFunction
     }
 
     public AFunction(
-        PId _id_,
+        TIdentifier _identifier_,
         List _identifierValue_,
         PStatement _statement_)
     {
-        setId(_id_);
+        setIdentifier(_identifier_);
 
         {
             this._identifierValue_.clear();
@@ -33,7 +33,7 @@ public final class AFunction extends PFunction
     public Object clone()
     {
         return new AFunction(
-            (PId) cloneNode(_id_),
+            (TIdentifier) cloneNode(_identifier_),
             cloneList(_identifierValue_),
             (PStatement) cloneNode(_statement_));
     }
@@ -43,16 +43,16 @@ public final class AFunction extends PFunction
         ((Analysis) sw).caseAFunction(this);
     }
 
-    public PId getId()
+    public TIdentifier getIdentifier()
     {
-        return _id_;
+        return _identifier_;
     }
 
-    public void setId(PId node)
+    public void setIdentifier(TIdentifier node)
     {
-        if(_id_ != null)
+        if(_identifier_ != null)
         {
-            _id_.parent(null);
+            _identifier_.parent(null);
         }
 
         if(node != null)
@@ -65,7 +65,7 @@ public final class AFunction extends PFunction
             node.parent(this);
         }
 
-        _id_ = node;
+        _identifier_ = node;
     }
 
     public LinkedList getIdentifierValue()
@@ -107,16 +107,16 @@ public final class AFunction extends PFunction
     public String toString()
     {
         return ""
-            + toString(_id_)
+            + toString(_identifier_)
             + toString(_identifierValue_)
             + toString(_statement_);
     }
 
     void removeChild(Node child)
     {
-        if(_id_ == child)
+        if(_identifier_ == child)
         {
-            _id_ = null;
+            _identifier_ = null;
             return;
         }
 
@@ -135,9 +135,9 @@ public final class AFunction extends PFunction
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_id_ == oldChild)
+        if(_identifier_ == oldChild)
         {
-            setId((PId) newChild);
+            setIdentifier((TIdentifier) newChild);
             return;
         }
 

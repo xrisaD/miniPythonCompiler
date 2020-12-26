@@ -57,12 +57,10 @@ public interface Analysis extends Switch
     void caseATrueComparison(ATrueComparison node);
     void caseAFalseComparison(AFalseComparison node);
     void caseAFunctionCall(AFunctionCall node);
-    void caseAId(AId node);
     void caseAMethodValue(AMethodValue node);
     void caseANumberValue(ANumberValue node);
     void caseAStringValue(AStringValue node);
     void caseANoneValue(ANoneValue node);
-    void caseANumber(ANumber node);
 
     void caseTLineComment(TLineComment node);
     void caseTTab(TTab node);

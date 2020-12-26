@@ -7,8 +7,8 @@ import minipython.analysis.*;
 
 public final class AForStatement extends PStatement
 {
-    private PId _id1_;
-    private PId _id2_;
+    private TIdentifier _id1_;
+    private TIdentifier _id2_;
     private PStatement _statement_;
 
     public AForStatement()
@@ -16,8 +16,8 @@ public final class AForStatement extends PStatement
     }
 
     public AForStatement(
-        PId _id1_,
-        PId _id2_,
+        TIdentifier _id1_,
+        TIdentifier _id2_,
         PStatement _statement_)
     {
         setId1(_id1_);
@@ -30,8 +30,8 @@ public final class AForStatement extends PStatement
     public Object clone()
     {
         return new AForStatement(
-            (PId) cloneNode(_id1_),
-            (PId) cloneNode(_id2_),
+            (TIdentifier) cloneNode(_id1_),
+            (TIdentifier) cloneNode(_id2_),
             (PStatement) cloneNode(_statement_));
     }
 
@@ -40,12 +40,12 @@ public final class AForStatement extends PStatement
         ((Analysis) sw).caseAForStatement(this);
     }
 
-    public PId getId1()
+    public TIdentifier getId1()
     {
         return _id1_;
     }
 
-    public void setId1(PId node)
+    public void setId1(TIdentifier node)
     {
         if(_id1_ != null)
         {
@@ -65,12 +65,12 @@ public final class AForStatement extends PStatement
         _id1_ = node;
     }
 
-    public PId getId2()
+    public TIdentifier getId2()
     {
         return _id2_;
     }
 
-    public void setId2(PId node)
+    public void setId2(TIdentifier node)
     {
         if(_id2_ != null)
         {
@@ -149,13 +149,13 @@ public final class AForStatement extends PStatement
     {
         if(_id1_ == oldChild)
         {
-            setId1((PId) newChild);
+            setId1((TIdentifier) newChild);
             return;
         }
 
         if(_id2_ == oldChild)
         {
-            setId2((PId) newChild);
+            setId2((TIdentifier) newChild);
             return;
         }
 

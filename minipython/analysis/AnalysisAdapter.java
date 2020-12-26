@@ -293,11 +293,6 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAId(AId node)
-    {
-        defaultCase(node);
-    }
-
     public void caseAMethodValue(AMethodValue node)
     {
         defaultCase(node);
@@ -314,11 +309,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseANoneValue(ANoneValue node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseANumber(ANumber node)
     {
         defaultCase(node);
     }

@@ -7,7 +7,7 @@ import minipython.analysis.*;
 
 public final class AMethodValue extends PValue
 {
-    private PId _id_;
+    private TIdentifier _identifier_;
     private PFunctionCall _functionCall_;
 
     public AMethodValue()
@@ -15,10 +15,10 @@ public final class AMethodValue extends PValue
     }
 
     public AMethodValue(
-        PId _id_,
+        TIdentifier _identifier_,
         PFunctionCall _functionCall_)
     {
-        setId(_id_);
+        setIdentifier(_identifier_);
 
         setFunctionCall(_functionCall_);
 
@@ -26,7 +26,7 @@ public final class AMethodValue extends PValue
     public Object clone()
     {
         return new AMethodValue(
-            (PId) cloneNode(_id_),
+            (TIdentifier) cloneNode(_identifier_),
             (PFunctionCall) cloneNode(_functionCall_));
     }
 
@@ -35,16 +35,16 @@ public final class AMethodValue extends PValue
         ((Analysis) sw).caseAMethodValue(this);
     }
 
-    public PId getId()
+    public TIdentifier getIdentifier()
     {
-        return _id_;
+        return _identifier_;
     }
 
-    public void setId(PId node)
+    public void setIdentifier(TIdentifier node)
     {
-        if(_id_ != null)
+        if(_identifier_ != null)
         {
-            _id_.parent(null);
+            _identifier_.parent(null);
         }
 
         if(node != null)
@@ -57,7 +57,7 @@ public final class AMethodValue extends PValue
             node.parent(this);
         }
 
-        _id_ = node;
+        _identifier_ = node;
     }
 
     public PFunctionCall getFunctionCall()
@@ -88,15 +88,15 @@ public final class AMethodValue extends PValue
     public String toString()
     {
         return ""
-            + toString(_id_)
+            + toString(_identifier_)
             + toString(_functionCall_);
     }
 
     void removeChild(Node child)
     {
-        if(_id_ == child)
+        if(_identifier_ == child)
         {
-            _id_ = null;
+            _identifier_ = null;
             return;
         }
 
@@ -110,9 +110,9 @@ public final class AMethodValue extends PValue
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_id_ == oldChild)
+        if(_identifier_ == oldChild)
         {
-            setId((PId) newChild);
+            setIdentifier((TIdentifier) newChild);
             return;
         }
 

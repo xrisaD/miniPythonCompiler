@@ -7,7 +7,7 @@ import minipython.analysis.*;
 
 public final class AAssignListStatement extends PStatement
 {
-    private PId _id_;
+    private TIdentifier _identifier_;
     private PExpression _ex1_;
     private PExpression _ex2_;
 
@@ -16,11 +16,11 @@ public final class AAssignListStatement extends PStatement
     }
 
     public AAssignListStatement(
-        PId _id_,
+        TIdentifier _identifier_,
         PExpression _ex1_,
         PExpression _ex2_)
     {
-        setId(_id_);
+        setIdentifier(_identifier_);
 
         setEx1(_ex1_);
 
@@ -30,7 +30,7 @@ public final class AAssignListStatement extends PStatement
     public Object clone()
     {
         return new AAssignListStatement(
-            (PId) cloneNode(_id_),
+            (TIdentifier) cloneNode(_identifier_),
             (PExpression) cloneNode(_ex1_),
             (PExpression) cloneNode(_ex2_));
     }
@@ -40,16 +40,16 @@ public final class AAssignListStatement extends PStatement
         ((Analysis) sw).caseAAssignListStatement(this);
     }
 
-    public PId getId()
+    public TIdentifier getIdentifier()
     {
-        return _id_;
+        return _identifier_;
     }
 
-    public void setId(PId node)
+    public void setIdentifier(TIdentifier node)
     {
-        if(_id_ != null)
+        if(_identifier_ != null)
         {
-            _id_.parent(null);
+            _identifier_.parent(null);
         }
 
         if(node != null)
@@ -62,7 +62,7 @@ public final class AAssignListStatement extends PStatement
             node.parent(this);
         }
 
-        _id_ = node;
+        _identifier_ = node;
     }
 
     public PExpression getEx1()
@@ -118,16 +118,16 @@ public final class AAssignListStatement extends PStatement
     public String toString()
     {
         return ""
-            + toString(_id_)
+            + toString(_identifier_)
             + toString(_ex1_)
             + toString(_ex2_);
     }
 
     void removeChild(Node child)
     {
-        if(_id_ == child)
+        if(_identifier_ == child)
         {
-            _id_ = null;
+            _identifier_ = null;
             return;
         }
 
@@ -147,9 +147,9 @@ public final class AAssignListStatement extends PStatement
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_id_ == oldChild)
+        if(_identifier_ == oldChild)
         {
-            setId((PId) newChild);
+            setIdentifier((TIdentifier) newChild);
             return;
         }
 
