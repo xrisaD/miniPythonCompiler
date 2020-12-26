@@ -7,12 +7,8 @@ import minipython.analysis.*;
 
 public final class AFunction extends PFunction
 {
-    private TDef _def_;
-    private TIdentifier _identifier_;
-    private TLPar _lPar_;
-    private PArgument _argument_;
-    private TRPar _rPar_;
-    private TColon _colon_;
+    private PId _id_;
+    private final LinkedList _identifierValue_ = new TypedLinkedList(new IdentifierValue_Cast());
     private PStatement _statement_;
 
     public AFunction()
@@ -20,25 +16,16 @@ public final class AFunction extends PFunction
     }
 
     public AFunction(
-        TDef _def_,
-        TIdentifier _identifier_,
-        TLPar _lPar_,
-        PArgument _argument_,
-        TRPar _rPar_,
-        TColon _colon_,
+        PId _id_,
+        List _identifierValue_,
         PStatement _statement_)
     {
-        setDef(_def_);
+        setId(_id_);
 
-        setIdentifier(_identifier_);
-
-        setLPar(_lPar_);
-
-        setArgument(_argument_);
-
-        setRPar(_rPar_);
-
-        setColon(_colon_);
+        {
+            this._identifierValue_.clear();
+            this._identifierValue_.addAll(_identifierValue_);
+        }
 
         setStatement(_statement_);
 
@@ -46,12 +33,8 @@ public final class AFunction extends PFunction
     public Object clone()
     {
         return new AFunction(
-            (TDef) cloneNode(_def_),
-            (TIdentifier) cloneNode(_identifier_),
-            (TLPar) cloneNode(_lPar_),
-            (PArgument) cloneNode(_argument_),
-            (TRPar) cloneNode(_rPar_),
-            (TColon) cloneNode(_colon_),
+            (PId) cloneNode(_id_),
+            cloneList(_identifierValue_),
             (PStatement) cloneNode(_statement_));
     }
 
@@ -60,16 +43,16 @@ public final class AFunction extends PFunction
         ((Analysis) sw).caseAFunction(this);
     }
 
-    public TDef getDef()
+    public PId getId()
     {
-        return _def_;
+        return _id_;
     }
 
-    public void setDef(TDef node)
+    public void setId(PId node)
     {
-        if(_def_ != null)
+        if(_id_ != null)
         {
-            _def_.parent(null);
+            _id_.parent(null);
         }
 
         if(node != null)
@@ -82,132 +65,18 @@ public final class AFunction extends PFunction
             node.parent(this);
         }
 
-        _def_ = node;
+        _id_ = node;
     }
 
-    public TIdentifier getIdentifier()
+    public LinkedList getIdentifierValue()
     {
-        return _identifier_;
+        return _identifierValue_;
     }
 
-    public void setIdentifier(TIdentifier node)
+    public void setIdentifierValue(List list)
     {
-        if(_identifier_ != null)
-        {
-            _identifier_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _identifier_ = node;
-    }
-
-    public TLPar getLPar()
-    {
-        return _lPar_;
-    }
-
-    public void setLPar(TLPar node)
-    {
-        if(_lPar_ != null)
-        {
-            _lPar_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _lPar_ = node;
-    }
-
-    public PArgument getArgument()
-    {
-        return _argument_;
-    }
-
-    public void setArgument(PArgument node)
-    {
-        if(_argument_ != null)
-        {
-            _argument_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _argument_ = node;
-    }
-
-    public TRPar getRPar()
-    {
-        return _rPar_;
-    }
-
-    public void setRPar(TRPar node)
-    {
-        if(_rPar_ != null)
-        {
-            _rPar_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _rPar_ = node;
-    }
-
-    public TColon getColon()
-    {
-        return _colon_;
-    }
-
-    public void setColon(TColon node)
-    {
-        if(_colon_ != null)
-        {
-            _colon_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _colon_ = node;
+        _identifierValue_.clear();
+        _identifierValue_.addAll(list);
     }
 
     public PStatement getStatement()
@@ -238,50 +107,21 @@ public final class AFunction extends PFunction
     public String toString()
     {
         return ""
-            + toString(_def_)
-            + toString(_identifier_)
-            + toString(_lPar_)
-            + toString(_argument_)
-            + toString(_rPar_)
-            + toString(_colon_)
+            + toString(_id_)
+            + toString(_identifierValue_)
             + toString(_statement_);
     }
 
     void removeChild(Node child)
     {
-        if(_def_ == child)
+        if(_id_ == child)
         {
-            _def_ = null;
+            _id_ = null;
             return;
         }
 
-        if(_identifier_ == child)
+        if(_identifierValue_.remove(child))
         {
-            _identifier_ = null;
-            return;
-        }
-
-        if(_lPar_ == child)
-        {
-            _lPar_ = null;
-            return;
-        }
-
-        if(_argument_ == child)
-        {
-            _argument_ = null;
-            return;
-        }
-
-        if(_rPar_ == child)
-        {
-            _rPar_ = null;
-            return;
-        }
-
-        if(_colon_ == child)
-        {
-            _colon_ = null;
             return;
         }
 
@@ -295,40 +135,27 @@ public final class AFunction extends PFunction
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_def_ == oldChild)
+        if(_id_ == oldChild)
         {
-            setDef((TDef) newChild);
+            setId((PId) newChild);
             return;
         }
 
-        if(_identifier_ == oldChild)
+        for(ListIterator i = _identifierValue_.listIterator(); i.hasNext();)
         {
-            setIdentifier((TIdentifier) newChild);
-            return;
-        }
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set(newChild);
+                    oldChild.parent(null);
+                    return;
+                }
 
-        if(_lPar_ == oldChild)
-        {
-            setLPar((TLPar) newChild);
-            return;
-        }
-
-        if(_argument_ == oldChild)
-        {
-            setArgument((PArgument) newChild);
-            return;
-        }
-
-        if(_rPar_ == oldChild)
-        {
-            setRPar((TRPar) newChild);
-            return;
-        }
-
-        if(_colon_ == oldChild)
-        {
-            setColon((TColon) newChild);
-            return;
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         if(_statement_ == oldChild)
@@ -337,5 +164,27 @@ public final class AFunction extends PFunction
             return;
         }
 
+    }
+
+    private class IdentifierValue_Cast implements Cast
+    {
+        public Object cast(Object o)
+        {
+            PIdentifierValue node = (PIdentifierValue) o;
+
+            if((node.parent() != null) &&
+                (node.parent() != AFunction.this))
+            {
+                node.parent().removeChild(node);
+            }
+
+            if((node.parent() == null) ||
+                (node.parent() != AFunction.this))
+            {
+                node.parent(AFunction.this);
+            }
+
+            return node;
+        }
     }
 }

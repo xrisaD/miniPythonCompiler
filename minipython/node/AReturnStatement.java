@@ -7,8 +7,6 @@ import minipython.analysis.*;
 
 public final class AReturnStatement extends PStatement
 {
-    private final LinkedList _tab_ = new TypedLinkedList(new Tab_Cast());
-    private TReturn _return_;
     private PExpression _expression_;
 
     public AReturnStatement()
@@ -16,67 +14,20 @@ public final class AReturnStatement extends PStatement
     }
 
     public AReturnStatement(
-        List _tab_,
-        TReturn _return_,
         PExpression _expression_)
     {
-        {
-            this._tab_.clear();
-            this._tab_.addAll(_tab_);
-        }
-
-        setReturn(_return_);
-
         setExpression(_expression_);
 
     }
     public Object clone()
     {
         return new AReturnStatement(
-            cloneList(_tab_),
-            (TReturn) cloneNode(_return_),
             (PExpression) cloneNode(_expression_));
     }
 
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAReturnStatement(this);
-    }
-
-    public LinkedList getTab()
-    {
-        return _tab_;
-    }
-
-    public void setTab(List list)
-    {
-        _tab_.clear();
-        _tab_.addAll(list);
-    }
-
-    public TReturn getReturn()
-    {
-        return _return_;
-    }
-
-    public void setReturn(TReturn node)
-    {
-        if(_return_ != null)
-        {
-            _return_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _return_ = node;
     }
 
     public PExpression getExpression()
@@ -107,24 +58,11 @@ public final class AReturnStatement extends PStatement
     public String toString()
     {
         return ""
-            + toString(_tab_)
-            + toString(_return_)
             + toString(_expression_);
     }
 
     void removeChild(Node child)
     {
-        if(_tab_.remove(child))
-        {
-            return;
-        }
-
-        if(_return_ == child)
-        {
-            _return_ = null;
-            return;
-        }
-
         if(_expression_ == child)
         {
             _expression_ = null;
@@ -135,56 +73,11 @@ public final class AReturnStatement extends PStatement
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        for(ListIterator i = _tab_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
-                    i.set(newChild);
-                    oldChild.parent(null);
-                    return;
-                }
-
-                i.remove();
-                oldChild.parent(null);
-                return;
-            }
-        }
-
-        if(_return_ == oldChild)
-        {
-            setReturn((TReturn) newChild);
-            return;
-        }
-
         if(_expression_ == oldChild)
         {
             setExpression((PExpression) newChild);
             return;
         }
 
-    }
-
-    private class Tab_Cast implements Cast
-    {
-        public Object cast(Object o)
-        {
-            TTab node = (TTab) o;
-
-            if((node.parent() != null) &&
-                (node.parent() != AReturnStatement.this))
-            {
-                node.parent().removeChild(node);
-            }
-
-            if((node.parent() == null) ||
-                (node.parent() != AReturnStatement.this))
-            {
-                node.parent(AReturnStatement.this);
-            }
-
-            return node;
-        }
     }
 }

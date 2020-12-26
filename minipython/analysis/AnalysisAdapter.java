@@ -93,12 +93,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseACommaIdAssignValue(ACommaIdAssignValue node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAAssignValue(AAssignValue node)
+    public void caseAIdentifierValue(AIdentifierValue node)
     {
         defaultCase(node);
     }
@@ -128,11 +123,6 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAAssignmentStatement(AAssignmentStatement node)
-    {
-        defaultCase(node);
-    }
-
     public void caseAAssertStatement(AAssertStatement node)
     {
         defaultCase(node);
@@ -143,232 +133,177 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseAAssignAssignmentStatement(AAssignAssignmentStatement node)
+    public void caseAAssignStatement(AAssignStatement node)
     {
         defaultCase(node);
     }
 
-    public void caseAMinusAssignAssignmentStatement(AMinusAssignAssignmentStatement node)
+    public void caseAMinusAssignStatement(AMinusAssignStatement node)
     {
         defaultCase(node);
     }
 
-    public void caseADivAssignAssignmentStatement(ADivAssignAssignmentStatement node)
+    public void caseADivAssignStatement(ADivAssignStatement node)
     {
         defaultCase(node);
     }
 
-    public void caseAAssignListAssignmentStatement(AAssignListAssignmentStatement node)
+    public void caseAAssignListStatement(AAssignListStatement node)
     {
         defaultCase(node);
     }
 
-    public void caseAExpression(AExpression node)
+    public void caseASumExpression(ASumExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseASumSum(ASumSum node)
+    public void caseAMinusExpression(AMinusExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseAMinusSum(AMinusSum node)
+    public void caseAMultExpression(AMultExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseATermSum(ATermSum node)
+    public void caseADivExpression(ADivExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseAMultTerm(AMultTerm node)
+    public void caseAModuloExpression(AModuloExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseADivTerm(ADivTerm node)
+    public void caseAPowExpression(APowExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseAModuloTerm(AModuloTerm node)
+    public void caseASubscriptionExpression(ASubscriptionExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseAPowerTerm(APowerTerm node)
+    public void caseAFuncCallExpression(AFuncCallExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseAExpPower(AExpPower node)
+    public void caseAValueExpression(AValueExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseASubscriptionPower(ASubscriptionPower node)
+    public void caseAIdentifierExpression(AIdentifierExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseASubscriptionSubscription(ASubscriptionSubscription node)
+    public void caseAOpenExpression(AOpenExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseAFuncSubscription(AFuncSubscription node)
+    public void caseATypeExpression(ATypeExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseAOpenFunc(AOpenFunc node)
+    public void caseAMaxExpression(AMaxExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseATypeFunc(ATypeFunc node)
+    public void caseAMinExpression(AMinExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseAMaxFunc(AMaxFunc node)
+    public void caseAParExpression(AParExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseAMinFunc(AMinFunc node)
+    public void caseAListDefExpression(AListDefExpression node)
     {
         defaultCase(node);
     }
 
-    public void caseAFuncFunc(AFuncFunc node)
+    public void caseAAndComparison(AAndComparison node)
     {
         defaultCase(node);
     }
 
-    public void caseAParFunc(AParFunc node)
+    public void caseAOrComparison(AOrComparison node)
     {
         defaultCase(node);
     }
 
-    public void caseAListDefFunc(AListDefFunc node)
+    public void caseANotComparison(ANotComparison node)
     {
         defaultCase(node);
     }
 
-    public void caseACommaValue(ACommaValue node)
+    public void caseAGreatComparison(AGreatComparison node)
     {
         defaultCase(node);
     }
 
-    public void caseAParPar(AParPar node)
+    public void caseALessComparison(ALessComparison node)
     {
         defaultCase(node);
     }
 
-    public void caseASomethingPar(ASomethingPar node)
+    public void caseALeqComparison(ALeqComparison node)
     {
         defaultCase(node);
     }
 
-    public void caseAValueSomething(AValueSomething node)
+    public void caseAGeqComparison(AGeqComparison node)
     {
         defaultCase(node);
     }
 
-    public void caseAIdentifierSomething(AIdentifierSomething node)
+    public void caseANeqComparison(ANeqComparison node)
     {
         defaultCase(node);
     }
 
-    public void caseAComparison(AComparison node)
+    public void caseAEqComparison(AEqComparison node)
     {
         defaultCase(node);
     }
 
-    public void caseAOrDisjunction(AOrDisjunction node)
+    public void caseATrueComparison(ATrueComparison node)
     {
         defaultCase(node);
     }
 
-    public void caseAAndDisjunction(AAndDisjunction node)
+    public void caseAFalseComparison(AFalseComparison node)
     {
         defaultCase(node);
     }
 
-    public void caseAAndConjuction(AAndConjuction node)
+    public void caseAFunctionCall(AFunctionCall node)
     {
         defaultCase(node);
     }
 
-    public void caseANotConjuction(ANotConjuction node)
+    public void caseAId(AId node)
     {
         defaultCase(node);
     }
 
-    public void caseANegatedNegated(ANegatedNegated node)
+    public void caseAMethodValue(AMethodValue node)
     {
         defaultCase(node);
     }
 
-    public void caseAClauseNegated(AClauseNegated node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAGreatClause(AGreatClause node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseALessClause(ALessClause node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseALeqClause(ALeqClause node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAGeqClause(AGeqClause node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseANeqClause(ANeqClause node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAEqClause(AEqClause node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseALiteralClause(ALiteralClause node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseATrueBooleanLiteral(ATrueBooleanLiteral node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAFalseBooleanLiteral(AFalseBooleanLiteral node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAFunCallValue(AFunCallValue node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseANumValue(ANumValue node)
+    public void caseANumberValue(ANumberValue node)
     {
         defaultCase(node);
     }
@@ -384,21 +319,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseANumber(ANumber node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAFunctionCall(AFunctionCall node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAArglist(AArglist node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseACommaExpression(ACommaExpression node)
     {
         defaultCase(node);
     }

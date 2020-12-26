@@ -7,35 +7,30 @@ import minipython.analysis.*;
 
 public final class AArgument extends PArgument
 {
-    private TIdentifier _identifier_;
-    private PAssignValue _assignValue_;
-    private final LinkedList _commaIdAssignValue_ = new TypedLinkedList(new CommaIdAssignValue_Cast());
+    private PIdentifierValue _id1_;
+    private final LinkedList _id2_ = new TypedLinkedList(new Id2_Cast());
 
     public AArgument()
     {
     }
 
     public AArgument(
-        TIdentifier _identifier_,
-        PAssignValue _assignValue_,
-        List _commaIdAssignValue_)
+        PIdentifierValue _id1_,
+        List _id2_)
     {
-        setIdentifier(_identifier_);
-
-        setAssignValue(_assignValue_);
+        setId1(_id1_);
 
         {
-            this._commaIdAssignValue_.clear();
-            this._commaIdAssignValue_.addAll(_commaIdAssignValue_);
+            this._id2_.clear();
+            this._id2_.addAll(_id2_);
         }
 
     }
     public Object clone()
     {
         return new AArgument(
-            (TIdentifier) cloneNode(_identifier_),
-            (PAssignValue) cloneNode(_assignValue_),
-            cloneList(_commaIdAssignValue_));
+            (PIdentifierValue) cloneNode(_id1_),
+            cloneList(_id2_));
     }
 
     public void apply(Switch sw)
@@ -43,16 +38,16 @@ public final class AArgument extends PArgument
         ((Analysis) sw).caseAArgument(this);
     }
 
-    public TIdentifier getIdentifier()
+    public PIdentifierValue getId1()
     {
-        return _identifier_;
+        return _id1_;
     }
 
-    public void setIdentifier(TIdentifier node)
+    public void setId1(PIdentifierValue node)
     {
-        if(_identifier_ != null)
+        if(_id1_ != null)
         {
-            _identifier_.parent(null);
+            _id1_.parent(null);
         }
 
         if(node != null)
@@ -65,68 +60,36 @@ public final class AArgument extends PArgument
             node.parent(this);
         }
 
-        _identifier_ = node;
+        _id1_ = node;
     }
 
-    public PAssignValue getAssignValue()
+    public LinkedList getId2()
     {
-        return _assignValue_;
+        return _id2_;
     }
 
-    public void setAssignValue(PAssignValue node)
+    public void setId2(List list)
     {
-        if(_assignValue_ != null)
-        {
-            _assignValue_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _assignValue_ = node;
-    }
-
-    public LinkedList getCommaIdAssignValue()
-    {
-        return _commaIdAssignValue_;
-    }
-
-    public void setCommaIdAssignValue(List list)
-    {
-        _commaIdAssignValue_.clear();
-        _commaIdAssignValue_.addAll(list);
+        _id2_.clear();
+        _id2_.addAll(list);
     }
 
     public String toString()
     {
         return ""
-            + toString(_identifier_)
-            + toString(_assignValue_)
-            + toString(_commaIdAssignValue_);
+            + toString(_id1_)
+            + toString(_id2_);
     }
 
     void removeChild(Node child)
     {
-        if(_identifier_ == child)
+        if(_id1_ == child)
         {
-            _identifier_ = null;
+            _id1_ = null;
             return;
         }
 
-        if(_assignValue_ == child)
-        {
-            _assignValue_ = null;
-            return;
-        }
-
-        if(_commaIdAssignValue_.remove(child))
+        if(_id2_.remove(child))
         {
             return;
         }
@@ -135,19 +98,13 @@ public final class AArgument extends PArgument
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_identifier_ == oldChild)
+        if(_id1_ == oldChild)
         {
-            setIdentifier((TIdentifier) newChild);
+            setId1((PIdentifierValue) newChild);
             return;
         }
 
-        if(_assignValue_ == oldChild)
-        {
-            setAssignValue((PAssignValue) newChild);
-            return;
-        }
-
-        for(ListIterator i = _commaIdAssignValue_.listIterator(); i.hasNext();)
+        for(ListIterator i = _id2_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
@@ -166,11 +123,11 @@ public final class AArgument extends PArgument
 
     }
 
-    private class CommaIdAssignValue_Cast implements Cast
+    private class Id2_Cast implements Cast
     {
         public Object cast(Object o)
         {
-            PCommaIdAssignValue node = (PCommaIdAssignValue) o;
+            PIdentifierValue node = (PIdentifierValue) o;
 
             if((node.parent() != null) &&
                 (node.parent() != AArgument.this))

@@ -7,22 +7,27 @@ import minipython.analysis.*;
 
 public final class ASumExpression extends PExpression
 {
-    private PSum _sum_;
+    private PExpression _e1_;
+    private PExpression _e2_;
 
     public ASumExpression()
     {
     }
 
     public ASumExpression(
-        PSum _sum_)
+        PExpression _e1_,
+        PExpression _e2_)
     {
-        setSum(_sum_);
+        setE1(_e1_);
+
+        setE2(_e2_);
 
     }
     public Object clone()
     {
         return new ASumExpression(
-            (PSum) cloneNode(_sum_));
+            (PExpression) cloneNode(_e1_),
+            (PExpression) cloneNode(_e2_));
     }
 
     public void apply(Switch sw)
@@ -30,16 +35,16 @@ public final class ASumExpression extends PExpression
         ((Analysis) sw).caseASumExpression(this);
     }
 
-    public PSum getSum()
+    public PExpression getE1()
     {
-        return _sum_;
+        return _e1_;
     }
 
-    public void setSum(PSum node)
+    public void setE1(PExpression node)
     {
-        if(_sum_ != null)
+        if(_e1_ != null)
         {
-            _sum_.parent(null);
+            _e1_.parent(null);
         }
 
         if(node != null)
@@ -52,20 +57,52 @@ public final class ASumExpression extends PExpression
             node.parent(this);
         }
 
-        _sum_ = node;
+        _e1_ = node;
+    }
+
+    public PExpression getE2()
+    {
+        return _e2_;
+    }
+
+    public void setE2(PExpression node)
+    {
+        if(_e2_ != null)
+        {
+            _e2_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        _e2_ = node;
     }
 
     public String toString()
     {
         return ""
-            + toString(_sum_);
+            + toString(_e1_)
+            + toString(_e2_);
     }
 
     void removeChild(Node child)
     {
-        if(_sum_ == child)
+        if(_e1_ == child)
         {
-            _sum_ = null;
+            _e1_ = null;
+            return;
+        }
+
+        if(_e2_ == child)
+        {
+            _e2_ = null;
             return;
         }
 
@@ -73,9 +110,15 @@ public final class ASumExpression extends PExpression
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_sum_ == oldChild)
+        if(_e1_ == oldChild)
         {
-            setSum((PSum) newChild);
+            setE1((PExpression) newChild);
+            return;
+        }
+
+        if(_e2_ == oldChild)
+        {
+            setE2((PExpression) newChild);
             return;
         }
 

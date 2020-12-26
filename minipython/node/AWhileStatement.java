@@ -7,10 +7,7 @@ import minipython.analysis.*;
 
 public final class AWhileStatement extends PStatement
 {
-    private final LinkedList _tab_ = new TypedLinkedList(new Tab_Cast());
-    private TWhile _while_;
     private PComparison _comparison_;
-    private TColon _colon_;
     private PStatement _statement_;
 
     public AWhileStatement()
@@ -18,22 +15,10 @@ public final class AWhileStatement extends PStatement
     }
 
     public AWhileStatement(
-        List _tab_,
-        TWhile _while_,
         PComparison _comparison_,
-        TColon _colon_,
         PStatement _statement_)
     {
-        {
-            this._tab_.clear();
-            this._tab_.addAll(_tab_);
-        }
-
-        setWhile(_while_);
-
         setComparison(_comparison_);
-
-        setColon(_colon_);
 
         setStatement(_statement_);
 
@@ -41,52 +26,13 @@ public final class AWhileStatement extends PStatement
     public Object clone()
     {
         return new AWhileStatement(
-            cloneList(_tab_),
-            (TWhile) cloneNode(_while_),
             (PComparison) cloneNode(_comparison_),
-            (TColon) cloneNode(_colon_),
             (PStatement) cloneNode(_statement_));
     }
 
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAWhileStatement(this);
-    }
-
-    public LinkedList getTab()
-    {
-        return _tab_;
-    }
-
-    public void setTab(List list)
-    {
-        _tab_.clear();
-        _tab_.addAll(list);
-    }
-
-    public TWhile getWhile()
-    {
-        return _while_;
-    }
-
-    public void setWhile(TWhile node)
-    {
-        if(_while_ != null)
-        {
-            _while_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _while_ = node;
     }
 
     public PComparison getComparison()
@@ -112,31 +58,6 @@ public final class AWhileStatement extends PStatement
         }
 
         _comparison_ = node;
-    }
-
-    public TColon getColon()
-    {
-        return _colon_;
-    }
-
-    public void setColon(TColon node)
-    {
-        if(_colon_ != null)
-        {
-            _colon_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _colon_ = node;
     }
 
     public PStatement getStatement()
@@ -167,35 +88,15 @@ public final class AWhileStatement extends PStatement
     public String toString()
     {
         return ""
-            + toString(_tab_)
-            + toString(_while_)
             + toString(_comparison_)
-            + toString(_colon_)
             + toString(_statement_);
     }
 
     void removeChild(Node child)
     {
-        if(_tab_.remove(child))
-        {
-            return;
-        }
-
-        if(_while_ == child)
-        {
-            _while_ = null;
-            return;
-        }
-
         if(_comparison_ == child)
         {
             _comparison_ = null;
-            return;
-        }
-
-        if(_colon_ == child)
-        {
-            _colon_ = null;
             return;
         }
 
@@ -209,38 +110,9 @@ public final class AWhileStatement extends PStatement
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        for(ListIterator i = _tab_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
-                    i.set(newChild);
-                    oldChild.parent(null);
-                    return;
-                }
-
-                i.remove();
-                oldChild.parent(null);
-                return;
-            }
-        }
-
-        if(_while_ == oldChild)
-        {
-            setWhile((TWhile) newChild);
-            return;
-        }
-
         if(_comparison_ == oldChild)
         {
             setComparison((PComparison) newChild);
-            return;
-        }
-
-        if(_colon_ == oldChild)
-        {
-            setColon((TColon) newChild);
             return;
         }
 
@@ -250,27 +122,5 @@ public final class AWhileStatement extends PStatement
             return;
         }
 
-    }
-
-    private class Tab_Cast implements Cast
-    {
-        public Object cast(Object o)
-        {
-            TTab node = (TTab) o;
-
-            if((node.parent() != null) &&
-                (node.parent() != AWhileStatement.this))
-            {
-                node.parent().removeChild(node);
-            }
-
-            if((node.parent() == null) ||
-                (node.parent() != AWhileStatement.this))
-            {
-                node.parent(AWhileStatement.this);
-            }
-
-            return node;
-        }
     }
 }

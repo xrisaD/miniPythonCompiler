@@ -7,43 +7,30 @@ import minipython.analysis.*;
 
 public final class APrintStatement extends PStatement
 {
-    private final LinkedList _tab_ = new TypedLinkedList(new Tab_Cast());
-    private TPrint _print_;
-    private PExpression _expression_;
-    private final LinkedList _commaExpression_ = new TypedLinkedList(new CommaExpression_Cast());
+    private PExpression _exp1_;
+    private final LinkedList _exp2_ = new TypedLinkedList(new Exp2_Cast());
 
     public APrintStatement()
     {
     }
 
     public APrintStatement(
-        List _tab_,
-        TPrint _print_,
-        PExpression _expression_,
-        List _commaExpression_)
+        PExpression _exp1_,
+        List _exp2_)
     {
-        {
-            this._tab_.clear();
-            this._tab_.addAll(_tab_);
-        }
-
-        setPrint(_print_);
-
-        setExpression(_expression_);
+        setExp1(_exp1_);
 
         {
-            this._commaExpression_.clear();
-            this._commaExpression_.addAll(_commaExpression_);
+            this._exp2_.clear();
+            this._exp2_.addAll(_exp2_);
         }
 
     }
     public Object clone()
     {
         return new APrintStatement(
-            cloneList(_tab_),
-            (TPrint) cloneNode(_print_),
-            (PExpression) cloneNode(_expression_),
-            cloneList(_commaExpression_));
+            (PExpression) cloneNode(_exp1_),
+            cloneList(_exp2_));
     }
 
     public void apply(Switch sw)
@@ -51,27 +38,16 @@ public final class APrintStatement extends PStatement
         ((Analysis) sw).caseAPrintStatement(this);
     }
 
-    public LinkedList getTab()
+    public PExpression getExp1()
     {
-        return _tab_;
+        return _exp1_;
     }
 
-    public void setTab(List list)
+    public void setExp1(PExpression node)
     {
-        _tab_.clear();
-        _tab_.addAll(list);
-    }
-
-    public TPrint getPrint()
-    {
-        return _print_;
-    }
-
-    public void setPrint(TPrint node)
-    {
-        if(_print_ != null)
+        if(_exp1_ != null)
         {
-            _print_.parent(null);
+            _exp1_.parent(null);
         }
 
         if(node != null)
@@ -84,74 +60,36 @@ public final class APrintStatement extends PStatement
             node.parent(this);
         }
 
-        _print_ = node;
+        _exp1_ = node;
     }
 
-    public PExpression getExpression()
+    public LinkedList getExp2()
     {
-        return _expression_;
+        return _exp2_;
     }
 
-    public void setExpression(PExpression node)
+    public void setExp2(List list)
     {
-        if(_expression_ != null)
-        {
-            _expression_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _expression_ = node;
-    }
-
-    public LinkedList getCommaExpression()
-    {
-        return _commaExpression_;
-    }
-
-    public void setCommaExpression(List list)
-    {
-        _commaExpression_.clear();
-        _commaExpression_.addAll(list);
+        _exp2_.clear();
+        _exp2_.addAll(list);
     }
 
     public String toString()
     {
         return ""
-            + toString(_tab_)
-            + toString(_print_)
-            + toString(_expression_)
-            + toString(_commaExpression_);
+            + toString(_exp1_)
+            + toString(_exp2_);
     }
 
     void removeChild(Node child)
     {
-        if(_tab_.remove(child))
+        if(_exp1_ == child)
         {
+            _exp1_ = null;
             return;
         }
 
-        if(_print_ == child)
-        {
-            _print_ = null;
-            return;
-        }
-
-        if(_expression_ == child)
-        {
-            _expression_ = null;
-            return;
-        }
-
-        if(_commaExpression_.remove(child))
+        if(_exp2_.remove(child))
         {
             return;
         }
@@ -160,36 +98,13 @@ public final class APrintStatement extends PStatement
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        for(ListIterator i = _tab_.listIterator(); i.hasNext();)
+        if(_exp1_ == oldChild)
         {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
-                    i.set(newChild);
-                    oldChild.parent(null);
-                    return;
-                }
-
-                i.remove();
-                oldChild.parent(null);
-                return;
-            }
-        }
-
-        if(_print_ == oldChild)
-        {
-            setPrint((TPrint) newChild);
+            setExp1((PExpression) newChild);
             return;
         }
 
-        if(_expression_ == oldChild)
-        {
-            setExpression((PExpression) newChild);
-            return;
-        }
-
-        for(ListIterator i = _commaExpression_.listIterator(); i.hasNext();)
+        for(ListIterator i = _exp2_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
@@ -208,33 +123,11 @@ public final class APrintStatement extends PStatement
 
     }
 
-    private class Tab_Cast implements Cast
+    private class Exp2_Cast implements Cast
     {
         public Object cast(Object o)
         {
-            TTab node = (TTab) o;
-
-            if((node.parent() != null) &&
-                (node.parent() != APrintStatement.this))
-            {
-                node.parent().removeChild(node);
-            }
-
-            if((node.parent() == null) ||
-                (node.parent() != APrintStatement.this))
-            {
-                node.parent(APrintStatement.this);
-            }
-
-            return node;
-        }
-    }
-
-    private class CommaExpression_Cast implements Cast
-    {
-        public Object cast(Object o)
-        {
-            PCommaExpression node = (PCommaExpression) o;
+            PExpression node = (PExpression) o;
 
             if((node.parent() != null) &&
                 (node.parent() != APrintStatement.this))

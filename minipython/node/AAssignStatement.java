@@ -7,9 +7,7 @@ import minipython.analysis.*;
 
 public final class AAssignStatement extends PStatement
 {
-    private final LinkedList _tab_ = new TypedLinkedList(new Tab_Cast());
-    private TIdentifier _identifier_;
-    private TEq _eq_;
+    private PId _id_;
     private PExpression _expression_;
 
     public AAssignStatement()
@@ -17,19 +15,10 @@ public final class AAssignStatement extends PStatement
     }
 
     public AAssignStatement(
-        List _tab_,
-        TIdentifier _identifier_,
-        TEq _eq_,
+        PId _id_,
         PExpression _expression_)
     {
-        {
-            this._tab_.clear();
-            this._tab_.addAll(_tab_);
-        }
-
-        setIdentifier(_identifier_);
-
-        setEq(_eq_);
+        setId(_id_);
 
         setExpression(_expression_);
 
@@ -37,9 +26,7 @@ public final class AAssignStatement extends PStatement
     public Object clone()
     {
         return new AAssignStatement(
-            cloneList(_tab_),
-            (TIdentifier) cloneNode(_identifier_),
-            (TEq) cloneNode(_eq_),
+            (PId) cloneNode(_id_),
             (PExpression) cloneNode(_expression_));
     }
 
@@ -48,27 +35,16 @@ public final class AAssignStatement extends PStatement
         ((Analysis) sw).caseAAssignStatement(this);
     }
 
-    public LinkedList getTab()
+    public PId getId()
     {
-        return _tab_;
+        return _id_;
     }
 
-    public void setTab(List list)
+    public void setId(PId node)
     {
-        _tab_.clear();
-        _tab_.addAll(list);
-    }
-
-    public TIdentifier getIdentifier()
-    {
-        return _identifier_;
-    }
-
-    public void setIdentifier(TIdentifier node)
-    {
-        if(_identifier_ != null)
+        if(_id_ != null)
         {
-            _identifier_.parent(null);
+            _id_.parent(null);
         }
 
         if(node != null)
@@ -81,32 +57,7 @@ public final class AAssignStatement extends PStatement
             node.parent(this);
         }
 
-        _identifier_ = node;
-    }
-
-    public TEq getEq()
-    {
-        return _eq_;
-    }
-
-    public void setEq(TEq node)
-    {
-        if(_eq_ != null)
-        {
-            _eq_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _eq_ = node;
+        _id_ = node;
     }
 
     public PExpression getExpression()
@@ -137,28 +88,15 @@ public final class AAssignStatement extends PStatement
     public String toString()
     {
         return ""
-            + toString(_tab_)
-            + toString(_identifier_)
-            + toString(_eq_)
+            + toString(_id_)
             + toString(_expression_);
     }
 
     void removeChild(Node child)
     {
-        if(_tab_.remove(child))
+        if(_id_ == child)
         {
-            return;
-        }
-
-        if(_identifier_ == child)
-        {
-            _identifier_ = null;
-            return;
-        }
-
-        if(_eq_ == child)
-        {
-            _eq_ = null;
+            _id_ = null;
             return;
         }
 
@@ -172,32 +110,9 @@ public final class AAssignStatement extends PStatement
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        for(ListIterator i = _tab_.listIterator(); i.hasNext();)
+        if(_id_ == oldChild)
         {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
-                    i.set(newChild);
-                    oldChild.parent(null);
-                    return;
-                }
-
-                i.remove();
-                oldChild.parent(null);
-                return;
-            }
-        }
-
-        if(_identifier_ == oldChild)
-        {
-            setIdentifier((TIdentifier) newChild);
-            return;
-        }
-
-        if(_eq_ == oldChild)
-        {
-            setEq((TEq) newChild);
+            setId((PId) newChild);
             return;
         }
 
@@ -207,27 +122,5 @@ public final class AAssignStatement extends PStatement
             return;
         }
 
-    }
-
-    private class Tab_Cast implements Cast
-    {
-        public Object cast(Object o)
-        {
-            TTab node = (TTab) o;
-
-            if((node.parent() != null) &&
-                (node.parent() != AAssignStatement.this))
-            {
-                node.parent().removeChild(node);
-            }
-
-            if((node.parent() == null) ||
-                (node.parent() != AAssignStatement.this))
-            {
-                node.parent(AAssignStatement.this);
-            }
-
-            return node;
-        }
     }
 }

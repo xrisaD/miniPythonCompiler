@@ -7,37 +7,30 @@ import minipython.analysis.*;
 
 public final class AFunctionCall extends PFunctionCall
 {
-    private TIdentifier _identifier_;
-    private TLPar _lPar_;
-    private PArglist _arglist_;
-    private TRPar _rPar_;
+    private PId _id_;
+    private final LinkedList _expression_ = new TypedLinkedList(new Expression_Cast());
 
     public AFunctionCall()
     {
     }
 
     public AFunctionCall(
-        TIdentifier _identifier_,
-        TLPar _lPar_,
-        PArglist _arglist_,
-        TRPar _rPar_)
+        PId _id_,
+        List _expression_)
     {
-        setIdentifier(_identifier_);
+        setId(_id_);
 
-        setLPar(_lPar_);
-
-        setArglist(_arglist_);
-
-        setRPar(_rPar_);
+        {
+            this._expression_.clear();
+            this._expression_.addAll(_expression_);
+        }
 
     }
     public Object clone()
     {
         return new AFunctionCall(
-            (TIdentifier) cloneNode(_identifier_),
-            (TLPar) cloneNode(_lPar_),
-            (PArglist) cloneNode(_arglist_),
-            (TRPar) cloneNode(_rPar_));
+            (PId) cloneNode(_id_),
+            cloneList(_expression_));
     }
 
     public void apply(Switch sw)
@@ -45,16 +38,16 @@ public final class AFunctionCall extends PFunctionCall
         ((Analysis) sw).caseAFunctionCall(this);
     }
 
-    public TIdentifier getIdentifier()
+    public PId getId()
     {
-        return _identifier_;
+        return _id_;
     }
 
-    public void setIdentifier(TIdentifier node)
+    public void setId(PId node)
     {
-        if(_identifier_ != null)
+        if(_id_ != null)
         {
-            _identifier_.parent(null);
+            _id_.parent(null);
         }
 
         if(node != null)
@@ -67,116 +60,37 @@ public final class AFunctionCall extends PFunctionCall
             node.parent(this);
         }
 
-        _identifier_ = node;
+        _id_ = node;
     }
 
-    public TLPar getLPar()
+    public LinkedList getExpression()
     {
-        return _lPar_;
+        return _expression_;
     }
 
-    public void setLPar(TLPar node)
+    public void setExpression(List list)
     {
-        if(_lPar_ != null)
-        {
-            _lPar_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _lPar_ = node;
-    }
-
-    public PArglist getArglist()
-    {
-        return _arglist_;
-    }
-
-    public void setArglist(PArglist node)
-    {
-        if(_arglist_ != null)
-        {
-            _arglist_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _arglist_ = node;
-    }
-
-    public TRPar getRPar()
-    {
-        return _rPar_;
-    }
-
-    public void setRPar(TRPar node)
-    {
-        if(_rPar_ != null)
-        {
-            _rPar_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        _rPar_ = node;
+        _expression_.clear();
+        _expression_.addAll(list);
     }
 
     public String toString()
     {
         return ""
-            + toString(_identifier_)
-            + toString(_lPar_)
-            + toString(_arglist_)
-            + toString(_rPar_);
+            + toString(_id_)
+            + toString(_expression_);
     }
 
     void removeChild(Node child)
     {
-        if(_identifier_ == child)
+        if(_id_ == child)
         {
-            _identifier_ = null;
+            _id_ = null;
             return;
         }
 
-        if(_lPar_ == child)
+        if(_expression_.remove(child))
         {
-            _lPar_ = null;
-            return;
-        }
-
-        if(_arglist_ == child)
-        {
-            _arglist_ = null;
-            return;
-        }
-
-        if(_rPar_ == child)
-        {
-            _rPar_ = null;
             return;
         }
 
@@ -184,29 +98,50 @@ public final class AFunctionCall extends PFunctionCall
 
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_identifier_ == oldChild)
+        if(_id_ == oldChild)
         {
-            setIdentifier((TIdentifier) newChild);
+            setId((PId) newChild);
             return;
         }
 
-        if(_lPar_ == oldChild)
+        for(ListIterator i = _expression_.listIterator(); i.hasNext();)
         {
-            setLPar((TLPar) newChild);
-            return;
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set(newChild);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
-        if(_arglist_ == oldChild)
-        {
-            setArglist((PArglist) newChild);
-            return;
-        }
+    }
 
-        if(_rPar_ == oldChild)
+    private class Expression_Cast implements Cast
+    {
+        public Object cast(Object o)
         {
-            setRPar((TRPar) newChild);
-            return;
-        }
+            PExpression node = (PExpression) o;
 
+            if((node.parent() != null) &&
+                (node.parent() != AFunctionCall.this))
+            {
+                node.parent().removeChild(node);
+            }
+
+            if((node.parent() == null) ||
+                (node.parent() != AFunctionCall.this))
+            {
+                node.parent(AFunctionCall.this);
+            }
+
+            return node;
+        }
     }
 }
