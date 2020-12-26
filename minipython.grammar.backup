@@ -1,7 +1,5 @@
 /*
-* Nikolaos Smyrnioudis ( 3170148)
-* Dikonimaki Chrysoula ( 3170039)
-* Konstantopoulos Konstantinos ( 3170086 )
+* Test Comments
 */
 
 Package minipython;
@@ -133,8 +131,7 @@ Productions
 	   {max} max l_par value comma_value+ r_par |
 	   {min} min l_par value comma_value+ r_par |
 	   {func} function_call |
-	   {par} par |
-	   {list_def} l_br expression comma_expression* r_br;
+	   {par} par;
     
     comma_value = comma value;
 
@@ -168,8 +165,7 @@ Productions
 
     value = {fun_call}identifier dot function_call |
             {num}number |
-            {string}string_literal |
-            {none} none;
+            {string}string_literal;
 
     number = integer_literal;
 
