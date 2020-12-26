@@ -1119,6 +1119,41 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAParFunc(node);
     }
 
+    public void inAListDefFunc(AListDefFunc node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAListDefFunc(AListDefFunc node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAListDefFunc(AListDefFunc node)
+    {
+        inAListDefFunc(node);
+        if(node.getRBr() != null)
+        {
+            node.getRBr().apply(this);
+        }
+        {
+            Object temp[] = node.getCommaExpression().toArray();
+            for(int i = temp.length - 1; i >= 0; i--)
+            {
+                ((PCommaExpression) temp[i]).apply(this);
+            }
+        }
+        if(node.getExpression() != null)
+        {
+            node.getExpression().apply(this);
+        }
+        if(node.getLBr() != null)
+        {
+            node.getLBr().apply(this);
+        }
+        outAListDefFunc(node);
+    }
+
     public void inACommaValue(ACommaValue node)
     {
         defaultIn(node);
@@ -1685,6 +1720,26 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getStringLiteral().apply(this);
         }
         outAStringValue(node);
+    }
+
+    public void inANoneValue(ANoneValue node)
+    {
+        defaultIn(node);
+    }
+
+    public void outANoneValue(ANoneValue node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseANoneValue(ANoneValue node)
+    {
+        inANoneValue(node);
+        if(node.getNone() != null)
+        {
+            node.getNone().apply(this);
+        }
+        outANoneValue(node);
     }
 
     public void inANumber(ANumber node)

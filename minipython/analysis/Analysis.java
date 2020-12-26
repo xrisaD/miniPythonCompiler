@@ -49,6 +49,7 @@ public interface Analysis extends Switch
     void caseAMinFunc(AMinFunc node);
     void caseAFuncFunc(AFuncFunc node);
     void caseAParFunc(AParFunc node);
+    void caseAListDefFunc(AListDefFunc node);
     void caseACommaValue(ACommaValue node);
     void caseAParPar(AParPar node);
     void caseASomethingPar(ASomethingPar node);
@@ -73,6 +74,7 @@ public interface Analysis extends Switch
     void caseAFunCallValue(AFunCallValue node);
     void caseANumValue(ANumValue node);
     void caseAStringValue(AStringValue node);
+    void caseANoneValue(ANoneValue node);
     void caseANumber(ANumber node);
     void caseAFunctionCall(AFunctionCall node);
     void caseAArglist(AArglist node);

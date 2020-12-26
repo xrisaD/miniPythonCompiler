@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5f0f9e45-146b-4e37-a2e1-6c2ebb0e6a7e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sablecc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ASTPrinter.class" beforeDir="false" afterPath="$PROJECT_DIR$/ASTPrinter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LexerTest1.class" beforeDir="false" afterPath="$PROJECT_DIR$/LexerTest1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ParserTest1.class" beforeDir="false" afterPath="$PROJECT_DIR$/ParserTest1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ParserTest2.class" beforeDir="false" afterPath="$PROJECT_DIR$/ParserTest2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/example0.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/example4.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython.grammar" beforeDir="false" afterPath="$PROJECT_DIR$/minipython.grammar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/analysis/Analysis.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/analysis/Analysis.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/analysis/Analysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/analysis/Analysis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/analysis/AnalysisAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/analysis/AnalysisAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/analysis/AnalysisAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/analysis/AnalysisAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/analysis/DepthFirstAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/analysis/DepthFirstAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/analysis/ReversedDepthFirstAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/analysis/ReversedDepthFirstAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/analysis/ReversedDepthFirstAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/analysis/ReversedDepthFirstAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/lexer/Lexer$State.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/lexer/Lexer$State.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/lexer/Lexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/lexer/Lexer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/lexer/LexerException.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/lexer/LexerException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AArglist$CommaExpression_Cast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AArglist$CommaExpression_Cast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AArglist.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AArglist.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AArgument$CommaIdAssignValue_Cast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AArgument$CommaIdAssignValue_Cast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AArgument.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AArgument.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AAssertStatement$Tab_Cast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AAssertStatement$Tab_Cast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AAssertStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AAssertStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AAssignAssignmentStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AAssignAssignmentStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AAssignListAssignmentStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AAssignListAssignmentStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AAssignValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AAssignValue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AAssignmentStatement$Tab_Cast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AAssignmentStatement$Tab_Cast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AAssignmentStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AAssignmentStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/ACommaExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/ACommaExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/ACommaIdAssignValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/ACommaIdAssignValue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AComparison.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AComparison.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/ADivAssignAssignmentStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/ADivAssignAssignmentStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AForStatement$Tab_Cast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AForStatement$Tab_Cast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AForStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AForStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AFunCallValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AFunCallValue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AFuncCallStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AFuncCallStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AFuncCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AFuncCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AFunctionCall.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AFunctionCall.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AGoal$Command_Cast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AGoal$Command_Cast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AGoal.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AGoal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AIdentifierSomething.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AIdentifierSomething.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AIfStatement$Tab_Cast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AIfStatement$Tab_Cast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AIfStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AIfStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AMinusAssignAssignmentStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AMinusAssignAssignmentStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/ANumValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/ANumValue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/ANumber.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/ANumber.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/APrintStatement$CommaExpression_Cast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/APrintStatement$CommaExpression_Cast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/APrintStatement$Tab_Cast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/APrintStatement$Tab_Cast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/APrintStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/APrintStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AReturnStatement$Tab_Cast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AReturnStatement$Tab_Cast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AReturnStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AReturnStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AStatementCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AStatementCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AStringValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AStringValue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AWhileStatement$Tab_Cast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AWhileStatement$Tab_Cast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/AWhileStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AWhileStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/Cast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/Cast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/EOF.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/EOF.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/NoCast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/NoCast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/NodeCast.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/NodeCast.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PArglist.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PArglist.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PArgument.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PArgument.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PAssignValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PAssignValue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PAssignmentStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PAssignmentStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PCommaExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PCommaExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PCommaIdAssignValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PCommaIdAssignValue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PComparison.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PComparison.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PFunctionCall.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PFunctionCall.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PGoal.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PGoal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PNumber.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PNumber.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PSomething.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PSomething.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/PValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/PValue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/Start.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/Start.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/Switch.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/Switch.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/Switchable.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/Switchable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TAnd.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TAnd.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TAssert.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TAssert.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TAssign.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TAssign.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TBlank.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TBlank.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TColon.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TColon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TComma.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TComma.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TDef.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TDef.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TDictt.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TDictt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TDiv.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TDiv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TDivAssign.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TDivAssign.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TDmult.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TDmult.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TDot.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TDot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TElif.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TElif.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TElse.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TElse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TEq.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TEq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TExclam.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TExclam.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TFalse.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TFalse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TFor.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TFor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TGeq.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TGeq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TGreat.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TGreat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TIdentifier.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TIdentifier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TIf.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TIf.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TIn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TIntegerLiteral.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TIntegerLiteral.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TLBr.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TLBr.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TLPar.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TLPar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TLeq.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TLeq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TLess.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TLess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TLineComment.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TLineComment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TMax.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TMax.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TMin.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TMin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TMinus.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TMinus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TMinusAssign.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TMinusAssign.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TMode.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TMode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TMult.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TMult.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TNeq.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TNeq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TNone.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TNone.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TOpen.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TOpen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TOr.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TOr.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TPlus.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TPlus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TPrint.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TPrint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TQmark.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TQmark.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TQuote.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TQuote.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TRBr.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TRBr.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TRPar.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TRPar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TReturn.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TReturn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TSemi.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TSemi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TStringLiteral.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TStringLiteral.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TTab.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TTab.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TTrue.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TTrue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TType.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TWhile.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TWhile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/Token.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/Token.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TypedLinkedList$TypedLinkedListIterator.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TypedLinkedList$TypedLinkedListIterator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/node/TypedLinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/TypedLinkedList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/parser/Parser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/parser/ParserException.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/parser/ParserException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/parser/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/parser/State.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/parser/TokenIndex.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/parser/TokenIndex.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minipython/parser/parser.dat" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/parser/parser.dat" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1kYJuX44900GS6mPmDZ6XQc1uVE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5f0f9e45-146b-4e37-a2e1-6c2ebb0e6a7e" name="Default Changelist" comment="" />
+      <created>1605871817832</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605871817832</updated>
+      <workItem from="1605871819260" duration="4394000" />
+      <workItem from="1606035018908" duration="13419000" />
+      <workItem from="1608355820111" duration="9000" />
+      <workItem from="1608963494961" duration="780000" />
+      <workItem from="1608964291513" duration="135000" />
+      <workItem from="1608964436359" duration="63000" />
+      <workItem from="1608964508552" duration="223000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.py" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="519" y="214" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608964648422">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="519" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1608964648422" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1608964486202">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608964486202" />
+  </component>
+</project>

@@ -3,12 +3,11 @@
 
 def BERTSystemWrapper(model_name, params, dp):
     for i in params:
-        print true , true ,true
+        print 1 , 1 ,1
     assert true
     while true:
-        dp = true
-        if true:
-            print true, true
-    model_name -= true
-    params[true] = true
-    train(true, true, true)
+        dp = 1
+        if true:print 1
+    model_name -= 1
+    params[true] = 1
+    train(1, 1, 1)

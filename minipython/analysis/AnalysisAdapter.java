@@ -253,6 +253,11 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
+    public void caseAListDefFunc(AListDefFunc node)
+    {
+        defaultCase(node);
+    }
+
     public void caseACommaValue(ACommaValue node)
     {
         defaultCase(node);
@@ -369,6 +374,11 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseAStringValue(AStringValue node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseANoneValue(ANoneValue node)
     {
         defaultCase(node);
     }
