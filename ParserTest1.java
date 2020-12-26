@@ -16,8 +16,9 @@ public class ParserTest1
         new FileReader(args[0].toString()), 1024)));
 
       Start ast = parser.parse();
+      t.apply(new MyAdapter());
 
-      System.out.println(ast);
+      //System.out.println(ast);
     }
     catch (Exception e)
     {
