@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f0f9e45-146b-4e37-a2e1-6c2ebb0e6a7e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/3170148-3170039-3170086.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/3170148-3170039.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/minipython.grammar.backup" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ASTPrinter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LexerTest1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ParserTest1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ParserTest2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ParserTest2Color.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/example4.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minipython.grammar" beforeDir="false" afterPath="$PROJECT_DIR$/minipython.grammar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minipython/analysis/Analysis.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/analysis/Analysis.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minipython/analysis/AnalysisAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/analysis/AnalysisAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minipython/analysis/ReversedDepthFirstAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/analysis/ReversedDepthFirstAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minipython/lexer/Lexer$State.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/lexer/Lexer$State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minipython/lexer/Lexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/lexer/Lexer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minipython/node/AComparison.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/node/AComparison.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minipython/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/parser/Parser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minipython/parser/TokenIndex.class" beforeDir="false" afterPath="$PROJECT_DIR$/minipython/parser/TokenIndex.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +22,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Lab3" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
@@ -68,7 +52,7 @@
       <workItem from="1608963494961" duration="780000" />
       <workItem from="1608964291513" duration="135000" />
       <workItem from="1608964436359" duration="63000" />
-      <workItem from="1608964508552" duration="397000" />
+      <workItem from="1608964508552" duration="14525000" />
     </task>
     <servers />
   </component>
@@ -83,9 +67,13 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="519" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1608964648422" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1608964486202">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1608975913488">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608964486202" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608975913488" />
+    <state x="478" y="116" width="731" height="592" key="find.popup" timestamp="1608975933403">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="478" y="116" width="731" height="592" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1608975933403" />
   </component>
 </project>
