@@ -15,7 +15,9 @@ Helpers
 	eol = lf | cr | cr lf ;
 	not_eol = [all - [cr + lf]];
 	d_quote = '"';
+	not_d_quote = [all - d_quote];
     	s_quote = ''';
+	not_s_quote = [all - s_quote];
 
 Tokens
 	line_comment = '#' not_eol* eol; 
@@ -79,7 +81,7 @@ Tokens
 	blank = (' ' | lf | cr);
 	integer_literal = digit+ | (digit+ '.' digit+);
 	identifier = letter (letter | digit | '_')*;
-	string_literal = d_quote not_eol* d_quote|s_quote not_eol* s_quote;
+	string_literal = d_quote [not_eol - d_quote]* d_quote | s_quote [not_eol - s_quote]* s_quote;
 
 Ignored Tokens
 	blank, line_comment;
