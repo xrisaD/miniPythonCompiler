@@ -5,3 +5,4 @@ def fib(n):    # write Fibonacci series up to n
                b = 1
                while true:
                         a = b
+a=fib(n)+5
