@@ -18,9 +18,9 @@ public class ASTTest1
 
       Start ast = parser.parse();
 
-	ast.apply(new ASTPrinter());
+	  ast.apply(new ASTPrinter());
 
-//      System.out.println(ast);
+      System.out.println(ast);
     }
     catch (Exception e)
     {
