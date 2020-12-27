@@ -10,14 +10,14 @@ public class MyApapter extends DepthFirstAdapter
     // fcall: called functions
     // fdef: defined functions
     private Hashtable<String, Variable> variables;
-    private Hashtable<String, Function> fcall;
-    private Hashtable<String, Function> fdef;
+    private Hashtable<String, ArrayList<Function>> fcall;
+    private Hashtable<String, ArrayList<Function>> fdef;
 
     MyApapter()
     {
         this.variables = new Hashtable<String, Variable>();
-        this.fcall = new Hashtable<String, Function>();
-        this.fdef = new Hashtable<String, Function>();
+        this.fcall = new Hashtable<String, ArrayList<Function>>();
+        this.fdef = new Hashtable<String, ArrayList<Function>>();
     }
 
     @Override
@@ -92,8 +92,22 @@ public class MyApapter extends DepthFirstAdapter
             int line = node.getIdentifier().getLine();
             int pos = node.getIdentifier().getPos();
 
-            Function newFunDef = new Function(fname, line, pos, sumNonDef, temp.length);
-            fdef.put(fname, newFunDef);
+            if(fdef.get(fname)==null){
+                Function newFunDef = new Function(fname, line, pos, sumNonDef, temp.length);
+                fdef.put(fname, new ArrayList<Function>());
+                fdef.get(fname).add(newFunDef);
+
+            }else{
+                ArrayList<Function> functions = fdef.get(fname);
+                for (Function f:functions){
+                    if(f.sum==sumNonDef){
+                        System.out.println("Redefinition of "+fname+" with "+sumNonDef+" arguments");
+                    }
+                }
+
+                Function newFunDef = new Function(fname, line, pos, sumNonDef, temp.length);
+                fdef.get(fname).add(newFunDef);
+            }
         }
         if(node.getStatement() != null)
         {
@@ -118,8 +132,11 @@ public class MyApapter extends DepthFirstAdapter
             int line = node.getIdentifier().getLine();
             int pos = node.getIdentifier().getPos();
 
-            Function newFunCall = new Function(fname, line, pos, temp.length);
-            fcall.put(fname, newFunCall);
+            if(fcall.get(fname)==null){
+                Function newFunCall = new Function(fname, line, pos, temp.length);
+                fcall.put(fname, new ArrayList<Function>());
+                fcall.get(fname).add(newFunCall);
+            }
         }
         outAFunctionCall(node);
     }
@@ -127,19 +144,27 @@ public class MyApapter extends DepthFirstAdapter
     @Override
     public void outStart(Start node) {
         for (String k: fcall.keySet()) {
-            Function funcCall = fcall.get(k);
+            ArrayList<Function> funcCalls = fcall.get(k);
             if(fdef.get(k)==null){
-                System.out.println("Undefined function in line "+funcCall.line);
+                System.out.println("Undefined function in line "+funcCalls.get(0).line);
             }
             else{
-                int sumGivenArgs = funcCall.sum;
-                int sumNonDefArgs = fdef.get(k).sum;
-                int sumTotalArgs = fdef.get(k).total;
+                ArrayList<Function> allDefinitions = fdef.get(k);
+                for(Function funcCall:funcCalls){
+                    int sumGivenArgs = funcCall.sum;
 
-                if(sumGivenArgs>sumTotalArgs){
-                    System.out.println(funcCall.line+": Expecting "+sumTotalArgs+"but "+sumGivenArgs+" given. More than the acceptable number of args.");
-                }else if(sumGivenArgs<sumNonDefArgs){
-                    System.out.println(funcCall.line+": Expecting at least"+sumNonDefArgs+"but "+sumGivenArgs+" given. Less than the acceptable number of args.");
+                    boolean isOk = false;
+                    for(Function fd:allDefinitions){
+                        int sumNonDefArgs = fd.sum;
+                        int sumTotalArgs = fd.total;
+
+                        if(sumNonDefArgs<=sumGivenArgs && sumGivenArgs<=sumTotalArgs){
+                            isOk = true;
+                        }
+                    }
+                    if(!isOk) {
+                        System.out.println("Wrong number of parameters given at function "+k);
+                    }
                 }
             }
         }
