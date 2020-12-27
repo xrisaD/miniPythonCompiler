@@ -2,6 +2,7 @@ import minipython.analysis.DepthFirstAdapter;
 import minipython.node.*;
 
 import java.util.*;
+import java.util.concurrent.Callable;
 
 public class MyApapter extends DepthFirstAdapter
 {
@@ -45,6 +46,32 @@ public class MyApapter extends DepthFirstAdapter
             if(fdef.get(k)==null){
                 Function funcCall = fcall.get(k);
                 System.out.println("Undefined function in line "+funcCall.line);
+            }
+        }
+    }
+
+    @Override
+    public void outAOpenExpression(AOpenExpression node) {
+        PExpression e1 = node.getE1();
+        PExpression e2 = node.getE2();
+        if (e1 instanceof AValueExpression){
+            AValueExpression v1 = (AValueExpression) e1;
+            PValue p1 = v1.getValue();
+            if (p1 instanceof ANoneValue){
+                ANoneValue noneValue = (ANoneValue) p1;
+                int line = noneValue.getNone().getLine();
+                int pos = noneValue.getNone().getPos();
+                System.err.printf("[%d , %d]Open expression can't have none values%n", line, pos);
+            }
+        }
+        if (e2 instanceof AValueExpression){
+            AValueExpression v1 = (AValueExpression) e2;
+            PValue p1 = v1.getValue();
+            if (p1 instanceof ANoneValue){
+                ANoneValue noneValue = (ANoneValue) p1;
+                int line = noneValue.getNone().getLine();
+                int pos = noneValue.getNone().getPos();
+                System.err.printf("[%d , %d]Open expression can't have none values%n", line, pos);
             }
         }
     }
