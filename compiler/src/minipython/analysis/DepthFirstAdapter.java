@@ -445,148 +445,32 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAAssignListStatement(node);
     }
 
-    public void inASumExpression(ASumExpression node)
+    public void inAArithmeticExpression(AArithmeticExpression node)
     {
         defaultIn(node);
     }
 
-    public void outASumExpression(ASumExpression node)
+    public void outAArithmeticExpression(AArithmeticExpression node)
     {
         defaultOut(node);
     }
 
-    public void caseASumExpression(ASumExpression node)
+    public void caseAArithmeticExpression(AArithmeticExpression node)
     {
-        inASumExpression(node);
+        inAArithmeticExpression(node);
         if(node.getE1() != null)
         {
             node.getE1().apply(this);
+        }
+        if(node.getBinop() != null)
+        {
+            node.getBinop().apply(this);
         }
         if(node.getE2() != null)
         {
             node.getE2().apply(this);
         }
-        outASumExpression(node);
-    }
-
-    public void inAMinusExpression(AMinusExpression node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAMinusExpression(AMinusExpression node)
-    {
-        defaultOut(node);
-    }
-
-    public void caseAMinusExpression(AMinusExpression node)
-    {
-        inAMinusExpression(node);
-        if(node.getE1() != null)
-        {
-            node.getE1().apply(this);
-        }
-        if(node.getE2() != null)
-        {
-            node.getE2().apply(this);
-        }
-        outAMinusExpression(node);
-    }
-
-    public void inAMultExpression(AMultExpression node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAMultExpression(AMultExpression node)
-    {
-        defaultOut(node);
-    }
-
-    public void caseAMultExpression(AMultExpression node)
-    {
-        inAMultExpression(node);
-        if(node.getE1() != null)
-        {
-            node.getE1().apply(this);
-        }
-        if(node.getE2() != null)
-        {
-            node.getE2().apply(this);
-        }
-        outAMultExpression(node);
-    }
-
-    public void inADivExpression(ADivExpression node)
-    {
-        defaultIn(node);
-    }
-
-    public void outADivExpression(ADivExpression node)
-    {
-        defaultOut(node);
-    }
-
-    public void caseADivExpression(ADivExpression node)
-    {
-        inADivExpression(node);
-        if(node.getE1() != null)
-        {
-            node.getE1().apply(this);
-        }
-        if(node.getE2() != null)
-        {
-            node.getE2().apply(this);
-        }
-        outADivExpression(node);
-    }
-
-    public void inAModuloExpression(AModuloExpression node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAModuloExpression(AModuloExpression node)
-    {
-        defaultOut(node);
-    }
-
-    public void caseAModuloExpression(AModuloExpression node)
-    {
-        inAModuloExpression(node);
-        if(node.getE1() != null)
-        {
-            node.getE1().apply(this);
-        }
-        if(node.getE2() != null)
-        {
-            node.getE2().apply(this);
-        }
-        outAModuloExpression(node);
-    }
-
-    public void inAPowExpression(APowExpression node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAPowExpression(APowExpression node)
-    {
-        defaultOut(node);
-    }
-
-    public void caseAPowExpression(APowExpression node)
-    {
-        inAPowExpression(node);
-        if(node.getE1() != null)
-        {
-            node.getE1().apply(this);
-        }
-        if(node.getE2() != null)
-        {
-            node.getE2().apply(this);
-        }
-        outAPowExpression(node);
+        outAArithmeticExpression(node);
     }
 
     public void inASubscriptionExpression(ASubscriptionExpression node)
@@ -816,6 +700,126 @@ public class DepthFirstAdapter extends AnalysisAdapter
             }
         }
         outAListDefExpression(node);
+    }
+
+    public void inAPlusBinop(APlusBinop node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAPlusBinop(APlusBinop node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAPlusBinop(APlusBinop node)
+    {
+        inAPlusBinop(node);
+        if(node.getPlus() != null)
+        {
+            node.getPlus().apply(this);
+        }
+        outAPlusBinop(node);
+    }
+
+    public void inAMinusBinop(AMinusBinop node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMinusBinop(AMinusBinop node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAMinusBinop(AMinusBinop node)
+    {
+        inAMinusBinop(node);
+        if(node.getMinus() != null)
+        {
+            node.getMinus().apply(this);
+        }
+        outAMinusBinop(node);
+    }
+
+    public void inAMultBinop(AMultBinop node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultBinop(AMultBinop node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAMultBinop(AMultBinop node)
+    {
+        inAMultBinop(node);
+        if(node.getMult() != null)
+        {
+            node.getMult().apply(this);
+        }
+        outAMultBinop(node);
+    }
+
+    public void inADivBinop(ADivBinop node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADivBinop(ADivBinop node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseADivBinop(ADivBinop node)
+    {
+        inADivBinop(node);
+        if(node.getDiv() != null)
+        {
+            node.getDiv().apply(this);
+        }
+        outADivBinop(node);
+    }
+
+    public void inAModuloBinop(AModuloBinop node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAModuloBinop(AModuloBinop node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAModuloBinop(AModuloBinop node)
+    {
+        inAModuloBinop(node);
+        if(node.getMode() != null)
+        {
+            node.getMode().apply(this);
+        }
+        outAModuloBinop(node);
+    }
+
+    public void inAPowBinop(APowBinop node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAPowBinop(APowBinop node)
+    {
+        defaultOut(node);
+    }
+
+    public void caseAPowBinop(APowBinop node)
+    {
+        inAPowBinop(node);
+        if(node.getDmult() != null)
+        {
+            node.getDmult().apply(this);
+        }
+        outAPowBinop(node);
     }
 
     public void inAAndComparison(AAndComparison node)

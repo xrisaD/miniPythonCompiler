@@ -153,32 +153,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseASumExpression(ASumExpression node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAMinusExpression(AMinusExpression node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAMultExpression(AMultExpression node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseADivExpression(ADivExpression node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAModuloExpression(AModuloExpression node)
-    {
-        defaultCase(node);
-    }
-
-    public void caseAPowExpression(APowExpression node)
+    public void caseAArithmeticExpression(AArithmeticExpression node)
     {
         defaultCase(node);
     }
@@ -229,6 +204,36 @@ public class AnalysisAdapter implements Analysis
     }
 
     public void caseAListDefExpression(AListDefExpression node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAPlusBinop(APlusBinop node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAMinusBinop(AMinusBinop node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAMultBinop(AMultBinop node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseADivBinop(ADivBinop node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAModuloBinop(AModuloBinop node)
+    {
+        defaultCase(node);
+    }
+
+    public void caseAPowBinop(APowBinop node)
     {
         defaultCase(node);
     }

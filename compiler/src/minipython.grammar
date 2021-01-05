@@ -117,16 +117,16 @@ Productions
 
     expression = sum{-> sum.expression};
 
-    sum{->expression} = {sum} sum plus term {-> New expression.sum(sum.expression, term.expression)}|
-	{minus} sum minus term {-> New expression.minus(sum.expression, term.expression)}|
+    sum{->expression} = {sum} sum plus term {-> New expression.arithmetic(sum.expression, New binop.plus(plus), term.expression)}|
+	{minus} sum minus term {-> New expression.arithmetic(sum.expression,New binop.minus(minus) , term.expression)}|
 	{term} term {-> term.expression};
 
-    term{->expression} = {mult} term mult power {-> New expression.mult(term.expression, power.expression)}|
-	   {div} term div power {-> New expression.div(term.expression, power.expression)}|
-	   {modulo} term mode power {-> New expression.modulo(term.expression, power.expression)}|
+    term{->expression} = {mult} term mult power {-> New expression.arithmetic(term.expression, New binop.mult(mult) ,  power.expression)}|
+	   {div} term div power {-> New expression.arithmetic(term.expression, New binop.div(div) ,power.expression)}|
+	   {modulo} term mode power {-> New expression.arithmetic(term.expression, New binop.modulo(mode) ,power.expression)}|
 	   {power} power {-> power.expression};
 
-    power{->expression} = {exp} power dmult subscription {-> New expression.pow(power.expression, subscription.expression)}|
+    power{->expression} = {exp} power dmult subscription {-> New expression.arithmetic(power.expression, New binop.pow(dmult), subscription.expression)}|
 	    {subscription} subscription {-> subscription.expression};
 
     subscription{->expression} = {subscription} identifier l_br expression r_br {-> New expression.subscription(identifier, expression)}|
@@ -203,12 +203,7 @@ Abstract Syntax Tree
                 {div_assign}identifier expression|
                 {assign_list}identifier [ex1]: expression [ex2]: expression;
 
-    expression = {sum} [e1]:expression [e2]:expression |
-                 {minus} [e1]:expression [e2]:expression |
-                 {mult} [e1]:expression [e2]:expression |
-                 {div} [e1]:expression [e2]:expression |
-                 {modulo} [e1]:expression [e2]:expression |
-                 {pow} [e1]:expression [e2]:expression |
+    expression = {arithmetic} [e1]:expression binop [e2]:expression |
                  {subscription} identifier expression |
                  {func_call} function_call |
                  {value} value |
@@ -219,6 +214,13 @@ Abstract Syntax Tree
                  {min} [v1]:value [v2]:value+|
                  {par} expression |
                  {list_def} [e1]:expression [e2]:expression*;
+
+    binop = {plus} plus |
+            {minus} minus |
+            {mult} mult |
+            {div} div |
+            {modulo} mode |
+            {pow} dmult ;
 
     comparison = {and} [comp1]:comparison [comp2]:comparison |
                  {or} [comp1]:comparison [comp2]:comparison |

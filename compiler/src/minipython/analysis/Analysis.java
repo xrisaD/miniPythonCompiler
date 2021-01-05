@@ -29,12 +29,7 @@ public interface Analysis extends Switch
     void caseAMinusAssignStatement(AMinusAssignStatement node);
     void caseADivAssignStatement(ADivAssignStatement node);
     void caseAAssignListStatement(AAssignListStatement node);
-    void caseASumExpression(ASumExpression node);
-    void caseAMinusExpression(AMinusExpression node);
-    void caseAMultExpression(AMultExpression node);
-    void caseADivExpression(ADivExpression node);
-    void caseAModuloExpression(AModuloExpression node);
-    void caseAPowExpression(APowExpression node);
+    void caseAArithmeticExpression(AArithmeticExpression node);
     void caseASubscriptionExpression(ASubscriptionExpression node);
     void caseAFuncCallExpression(AFuncCallExpression node);
     void caseAValueExpression(AValueExpression node);
@@ -45,6 +40,12 @@ public interface Analysis extends Switch
     void caseAMinExpression(AMinExpression node);
     void caseAParExpression(AParExpression node);
     void caseAListDefExpression(AListDefExpression node);
+    void caseAPlusBinop(APlusBinop node);
+    void caseAMinusBinop(AMinusBinop node);
+    void caseAMultBinop(AMultBinop node);
+    void caseADivBinop(ADivBinop node);
+    void caseAModuloBinop(AModuloBinop node);
+    void caseAPowBinop(APowBinop node);
     void caseAAndComparison(AAndComparison node);
     void caseAOrComparison(AOrComparison node);
     void caseANotComparison(ANotComparison node);

@@ -13,8 +13,34 @@ public class MyApapter extends DepthFirstAdapter
     private Hashtable<String, ArrayList<Function>> fcall;
     private Hashtable<String, ArrayList<Function>> fdef;
 
-    MyApapter()
-    {
+
+    // TODO Notes: move symbol table as another class , i think it must perform checks 1 , 2 , 3  , 7( and 5?)
+    // TODO Notes : create type checker that checks 4 , 6
+    // TODO Notes : check unseen identifier on type expr
+
+    // TODO : How to check types
+    // TODO : Open types , typetypes
+    // For every arithmetic expression check  that both e1 and e2 are numbers
+    // Need to get e1's type and e2's type
+    // three cases for e1 : 1) function call , method , ar.expr , identifier , open , type , String , None
+    // if its 1 , get fcalls return type
+    // if its 2 get methods return type
+    // if its id get identifiers type
+    // if its String tpye is tring
+    // if None type is nonetype
+
+    // Identifiers type : inferred from assignment of expression ( back to square 1)
+    // Fcalls / method type : if there is no return statement then NoneType
+    //                        if there is return expr , then return expr type
+
+    // Problems
+
+    // Function that returns a input var : Same type as the input variable .. Need to know variables output
+
+    // Series of functions whose calls create a circle : Every functions return type depends on its own return type...
+    // Some functions may never return and create an infinite loop
+
+    MyApapter() {
         this.variables = new Hashtable<String, Variable>();
         this.fcall = new Hashtable<String, ArrayList<Function>>();
         this.fdef = new Hashtable<String, ArrayList<Function>>();
@@ -29,20 +55,26 @@ public class MyApapter extends DepthFirstAdapter
             if(value instanceof ANoneValue){
                 // none
                 variables.put(vname,new Variable(vname,"none"));
-            }else if(value instanceof ANumberValue){
+            }
+            else if(value instanceof ANumberValue){
                 //number
                 variables.put(vname,new Variable(vname,"number"));
-            }else if(value instanceof AStringValue){
+            }
+            else if(value instanceof AStringValue){
                 //string
                 variables.put(vname,new Variable(vname,"string"));
             }
-        }else if(node.getExpression() instanceof AListDefExpression){
+        }
+        else if(node.getExpression() instanceof AListDefExpression){
             variables.put(vname,new Variable(vname,"list"));
-        }else if(node.getExpression() instanceof AIdentifierExpression){
+        }
+        else if(node.getExpression() instanceof AIdentifierExpression){
             variables.put(vname,new Variable(vname,"identifier"));
-        }else if(node.getExpression() instanceof AFuncCallExpression){
+        }
+        else if(node.getExpression() instanceof AFuncCallExpression){
             variables.put(vname,new Variable(vname,"function call"));
-        }else{
+        }
+        else{
             //number
             variables.put(vname,new Variable(vname,"number"));
 
@@ -73,15 +105,13 @@ public class MyApapter extends DepthFirstAdapter
 
     public void caseAFunction(AFunction node) {
         inAFunction(node);
-        if(node.getIdentifier() != null)
-        {
+        if(node.getIdentifier() != null) {
             node.getIdentifier().apply(this);
         }
         {
             int sumNonDef = 0;
             Object temp[] = node.getIdentifierValue().toArray();
-            for(int i = 0; i < temp.length; i++)
-            {
+            for(int i = 0; i < temp.length; i++) {
                 ((PIdentifierValue) temp[i]).apply(this);
                 if(((AIdentifierValue) temp[i]).getValue()==null){
                     sumNonDef+=1;
@@ -109,14 +139,12 @@ public class MyApapter extends DepthFirstAdapter
                 fdef.get(fname).add(newFunDef);
             }
         }
-        if(node.getStatement() != null)
-        {
+        if(node.getStatement() != null) {
             node.getStatement().apply(this);
         }
         outAFunction(node);
     }
-    public void caseAFunctionCall(AFunctionCall node)
-    {
+    public void caseAFunctionCall(AFunctionCall node) {
         inAFunctionCall(node);
         if(node.getIdentifier() != null)
         {
@@ -170,6 +198,7 @@ public class MyApapter extends DepthFirstAdapter
         }
     }
 
+    // TODO Remove this
     @Override
     public void outAOpenExpression(AOpenExpression node) {
         PExpression e1 = node.getE1();
@@ -196,223 +225,77 @@ public class MyApapter extends DepthFirstAdapter
         }
     }
 
-    // type checks
-    @Override
-    public void outASumExpression(ASumExpression node) {
-        var e1 = node.getE1();
-        var e2 = node.getE2();
-        if (e1 instanceof ATypeExpression ||
-            e1 instanceof AOpenExpression ){
-            System.out.println("Numeric expression cannot have type or open operands ");
-        }
-        if (e1 instanceof AValueExpression){
-            AValueExpression v1 = (AValueExpression) e1;
-            if (v1.getValue() instanceof ANoneValue){
-                System.out.println("Numeric expression cannot have None operands ");
-            }
-
-        }
-        // Same for e2
-        if (e2 instanceof ATypeExpression ||
-                e2 instanceof AOpenExpression ){
-            System.out.println("Numeric expression cannot have type or open operands ");
-        }
-        if (e2 instanceof AValueExpression){
-            AValueExpression v1 = (AValueExpression) e2;
-            if (v1.getValue() instanceof ANoneValue){
-                System.out.println("Numeric expression cannot have None operands ");
-            }
-        }
+    public static void showError(int line , int col , String message){
+        System.out.printf("[%d,%d] %s" , line , col , message);
     }
 
     @Override
-    public void outAMultExpression(AMultExpression node) {
-        var e1 = node.getE1();
-        var e2 = node.getE2();
-        if (e1 instanceof ATypeExpression ||
-                e1 instanceof AOpenExpression ){
-            System.out.println("Numeric expression cannot have type or open operands ");
+    public void outAArithmeticExpression(AArithmeticExpression node) {
+        PExpression left =  node.getE1();
+        PExpression right = node.getE2();
+        int line = getBinopLine(node.getBinop());
+        int pos = getBinopCol(node.getBinop());
+        if (left instanceof AOpenExpression | right instanceof AOpenExpression){
+            showError(line , pos , "An arithmetic expression cannot have open operands" );
         }
-        if (e1 instanceof AValueExpression){
-            AValueExpression v1 = (AValueExpression) e1;
-            if (v1.getValue() instanceof ANoneValue){
-                System.out.println("Numeric expression cannot have None operands ");
-            }
-
+        if (left instanceof ATypeExpression | right instanceof ATypeExpression){
+            showError(line , pos , "An arithmetic expression cannot have type operands" );
         }
-        // Same for e2
-        if (e2 instanceof ATypeExpression ||
-                e2 instanceof AOpenExpression ){
-            System.out.println("Numeric expression cannot have type or open operands ");
-        }
-        if (e2 instanceof AValueExpression){
-            AValueExpression v1 = (AValueExpression) e2;
-            if (v1.getValue() instanceof ANoneValue){
-                System.out.println("Numeric expression cannot have None operands ");
-            }
+        if (expressionIsNone(left) || expressionIsNone(right)){
+            showError(line , pos, "An arithmetic expression cannot have None value operands");
         }
     }
-
-    @Override
-    public void outAPowExpression(APowExpression node) {
-        var e1 = node.getE1();
-        var e2 = node.getE2();
-        if (e1 instanceof ATypeExpression ||
-                e1 instanceof AOpenExpression ){
-            System.out.println("Numeric expression cannot have type or open operands ");
+    public static boolean expressionIsNone(PExpression e){
+        if (e instanceof AValueExpression){
+            AValueExpression v = (AValueExpression) e;
+            return v.getValue() instanceof ANoneValue;
         }
-        if (e1 instanceof AValueExpression){
-            AValueExpression v1 = (AValueExpression) e1;
-            if (v1.getValue() instanceof ANoneValue){
-                System.out.println("Numeric expression cannot have None operands ");
-            }
-
+        return false;
+    }
+    // TODO Easier way to do this ??
+    public static int getBinopLine(PBinop op){
+        if (op instanceof AMinusBinop){
+            return ((AMinusBinop) op).getMinus().getLine();
         }
-        // Same for e2
-        if (e2 instanceof ATypeExpression ||
-                e2 instanceof AOpenExpression ){
-            System.out.println("Numeric expression cannot have type or open operands ");
+        if (op instanceof APlusBinop){
+            return ((APlusBinop) op).getPlus().getLine();
         }
-        if (e2 instanceof AValueExpression){
-            AValueExpression v1 = (AValueExpression) e2;
-            if (v1.getValue() instanceof ANoneValue){
-                System.out.println("Numeric expression cannot have None operands ");
-            }
+        if (op instanceof ADivBinop){
+            return ((ADivBinop) op).getDiv().getLine();
         }
+        if (op instanceof AMultBinop){
+            return ((AMultBinop) op).getMult().getLine();
+        }
+        if (op instanceof AModuloBinop){
+            return ((AModuloBinop) op).getMode().getLine();
+        }
+        if (op instanceof APowBinop){
+            return ((APowBinop) op).getDmult().getLine();
+        }
+        return -1;
+    }
+    public static int getBinopCol(PBinop op){
+        if (op instanceof AMinusBinop){
+            return ((AMinusBinop) op).getMinus().getPos();
+        }
+        if (op instanceof APlusBinop){
+            return ((APlusBinop) op).getPlus().getPos();
+        }
+        if (op instanceof ADivBinop){
+            return ((ADivBinop) op).getDiv().getPos();
+        }
+        if (op instanceof AMultBinop){
+            return ((AMultBinop) op).getMult().getPos();
+        }
+        if (op instanceof AModuloBinop){
+            return ((AModuloBinop) op).getMode().getPos();
+        }
+        if (op instanceof APowBinop){
+            return ((APowBinop) op).getDmult().getPos();
+        }
+        return -1;
     }
 
-    @Override
-    public void outADivExpression(ADivExpression node) {
-        var e1 = node.getE1();
-        var e2 = node.getE2();
-        if (e1 instanceof ATypeExpression ||
-                e1 instanceof AOpenExpression ){
-            System.out.println("Numeric expression cannot have type or open operands ");
-        }
-        if (e1 instanceof AValueExpression){
-            AValueExpression v1 = (AValueExpression) e1;
-            if (v1.getValue() instanceof ANoneValue){
-                System.out.println("Numeric expression cannot have None operands ");
-            }
-
-        }
-        // Same for e2
-        if (e2 instanceof ATypeExpression ||
-                e2 instanceof AOpenExpression ){
-            System.out.println("Numeric expression cannot have type or open operands ");
-        }
-        if (e2 instanceof AValueExpression){
-            AValueExpression v1 = (AValueExpression) e2;
-            if (v1.getValue() instanceof ANoneValue){
-                System.out.println("Numeric expression cannot have None operands ");
-            }
-        }
-    }
-
-    @Override
-    public void outAMinusExpression(AMinusExpression node) {
-        var e1 = node.getE1();
-        var e2 = node.getE2();
-        if (e1 instanceof ATypeExpression ||
-                e1 instanceof AOpenExpression ){
-            System.out.println("Numeric expression cannot have type or open operands ");
-        }
-        if (e1 instanceof AValueExpression){
-            AValueExpression v1 = (AValueExpression) e1;
-            if (v1.getValue() instanceof ANoneValue){
-                System.out.println("Numeric expression cannot have None operands ");
-            }
-
-        }
-        // Same for e2
-        if (e2 instanceof ATypeExpression ||
-                e2 instanceof AOpenExpression ){
-            System.out.println("Numeric expression cannot have type or open operands ");
-        }
-        if (e2 instanceof AValueExpression){
-            AValueExpression v1 = (AValueExpression) e2;
-            if (v1.getValue() instanceof ANoneValue){
-                System.out.println("Numeric expression cannot have None operands ");
-            }
-        }
-    }
-
-    @Override
-    public void outAModuloExpression(AModuloExpression node) {
-        var e1 = node.getE1();
-        var e2 = node.getE2();
-        if (e1 instanceof ATypeExpression ||
-                e1 instanceof AOpenExpression ){
-            System.out.println("Numeric expression cannot have type or open operands ");
-        }
-        if (e1 instanceof AValueExpression){
-            AValueExpression v1 = (AValueExpression) e1;
-            if (v1.getValue() instanceof ANoneValue){
-                System.out.println("Numeric expression cannot have None operands ");
-            }
-
-        }
-        // Same for e2
-        if (e2 instanceof ATypeExpression ||
-                e2 instanceof AOpenExpression ){
-            System.out.println("Numeric expression cannot have type or open operands ");
-        }
-        if (e2 instanceof AValueExpression){
-            AValueExpression v1 = (AValueExpression) e2;
-            if (v1.getValue() instanceof ANoneValue){
-                System.out.println("Numeric expression cannot have None operands ");
-            }
-        }
-    }
-
-    public static String getExpressionType(PExpression expr){
-        if (expr instanceof ASumExpression){
-            return "number";
-        }
-        if (expr instanceof AMinusExpression){
-            return "number";
-        }
-        if (expr instanceof AMultExpression){
-            return "number";
-        }
-        if (expr instanceof ADivExpression){
-            return "number";
-        }
-        if (expr instanceof APowExpression){
-            return "number";
-        }
-        if (expr instanceof AModuloExpression){
-            return "number";
-        }
-        // Value case
-        if (expr instanceof AValueExpression){
-            PValue val = ((AValueExpression) expr).getValue();
-            if (val instanceof AStringValue){
-                return "string";
-            }
-            if (val instanceof ANumberValue){
-                return "number";
-            }
-            if (val instanceof ANoneValue){
-                return "none";
-            }
-            if (val instanceof AMethodValue){
-                PFunctionCall f = ((AMethodValue) val).getFunctionCall();
-                if (f instanceof AFunctionCall){
-                    String function_name = ((AFunctionCall) f).getIdentifier().getText();
-                    // TODO get function ret type
-                }
-            }
-        }
-        if (expr instanceof AListDefExpression){
-            return "list";
-        }
-        if (expr instanceof AIdentifierExpression){
-            String identifierName =  ((AIdentifierExpression) expr).getIdentifier().getText();
-            // TODO get identifier type
-        }
-        return "UNDEFINED!!!";
-    }
     class Variable {
         String name;
         String type;
