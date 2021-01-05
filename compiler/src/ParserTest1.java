@@ -16,9 +16,12 @@ public class ParserTest1
         new FileReader(args[0].toString()), 1024)));
 
       Start ast = parser.parse();
-      ast.apply(new MyApapter());
+      System.out.println("Applying symbol table");
+      SymbolTable s = new SymbolTable();
+      ast.apply(s);
+      System.out.println("Applying apapter");
+      ast.apply(new MyApapter(s));
 
-      //System.out.println(ast);
     }
     catch (Exception e)
     {
