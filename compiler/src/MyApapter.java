@@ -17,11 +17,20 @@ public class MyApapter extends DepthFirstAdapter
     public void inAFunctionCall(AFunctionCall node) {
         String func_name = node.getIdentifier().getText();
         LinkedList args = node.getExpression();
-        // TODO get correct func definition from symbol table
-        // Check that input arguments matches expected types
-        super.inAFunctionCall(node);
+        Object[] argsArray = args.toArray();
+        FunctionDefinition def =  s.getDefinitionForCall(s.getFuncCallObject(node));
+        ArrayList<String> expectedTypes = def.getExpectedTypes();
+        FunctionCall funcCallObject = s.getFuncCallObject(node);
+        // Expected types is larger than args because it coantains types for default arguments as well
+        for (int i = 0 ; i < argsArray.length ; i++){
+            PExpression expr = (PExpression) argsArray[i];
+            String type = getExpressionType(expr);
+            if (!type.equals(expectedTypes.get(i))){
+                showError(funcCallObject.line, funcCallObject.column, "Unexpected type " + type + " as " +
+                        "function argument");
+            }
+        }
     }
-    // TODO get expected types of function call arguments
     // TODO get expected types of function return values (if they have) what do we do when they do not return anything though
 
     public static void showError(int line , int col , String message){
@@ -46,7 +55,23 @@ public class MyApapter extends DepthFirstAdapter
         }
         // TODO if return type of function is not a number show error
         // if left is function call expression and ret type is not number show error
+        if (left instanceof AFuncCallExpression){
+            AFuncCallExpression functionCall= ((AFuncCallExpression) left);
+            FunctionCall call = s.getFuncCallObject(functionCall);
+            FunctionDefinition fdef = s.getDefinitionForCall(call);
+             if (!fdef.retType.equals("number")){
+                 showError(line , pos, "Invalid type for arithmetic expression");
+             }
+        }
         // if right is function call expression and ret type is not number show error
+        if (right instanceof AFuncCallExpression){
+            AFuncCallExpression functionCall= ((AFuncCallExpression) right);
+            FunctionCall call = s.getFuncCallObject(functionCall);
+            FunctionDefinition fdef = s.getDefinitionForCall(call);
+            if (!fdef.retType.equals("number")){
+                showError(line , pos, "Invalid type for arithmetic expression");
+            }
+        }
 
     }
     public static boolean expressionIsNone(PExpression e){
@@ -98,6 +123,25 @@ public class MyApapter extends DepthFirstAdapter
             return ((APowBinop) op).getDmult().getPos();
         }
         return -1;
+    }
+
+    public String getExpressionType(PExpression e){
+        if (e instanceof AArithmeticExpression
+                | e instanceof AMinExpression
+                | e instanceof AMaxExpression){
+            return "number";
+        }
+        if (e instanceof AIdentifierExpression){
+            String vname = ((AIdentifierExpression) e).getIdentifier().getText();
+            return s.getVariable(vname).type;
+        }
+        if (e instanceof AValueExpression){
+            AValueExpression aValueExpression = (AValueExpression) e;
+            if (aValueExpression.getValue() instanceof ANumberValue) {
+                return "number";
+            }
+        }
+        return "not_number";
     }
 
 }

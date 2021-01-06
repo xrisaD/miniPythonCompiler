@@ -25,7 +25,7 @@ public class ParserTest1
     }
     catch (Exception e)
     {
-      System.err.println(e);
+      e.printStackTrace();
     }
   }
 }

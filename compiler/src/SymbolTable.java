@@ -10,40 +10,17 @@ public class SymbolTable extends DepthFirstAdapter {
     // fcall: called functions
     // fdef: defined functions
     private Hashtable<String, Variable> variables;
-    private Hashtable<String, ArrayList<Function>> fcall;
-    private Hashtable<String, ArrayList<Function>> fdef;
+    private Hashtable<String, ArrayList<FunctionCall>> fcall;
+    private Hashtable<String, ArrayList<FunctionDefinition>> fdef;
+
+    boolean isReady = false;
 
 
-    // TODO Notes: move symbol table as another class , i think it must perform checks 1 , 2 , 3  , 7( and 5?)
-    // TODO Notes : create type checker that checks 4 , 6
-    // TODO Notes : check unseen identifier on type expr
-
-    // TODO : How to check types
-    // TODO : Open types , typetypes
-    // For every arithmetic expression check  that both e1 and e2 are numbers
-    // Need to get e1's type and e2's type
-    // three cases for e1 : 1) function call , method , ar.expr , identifier , open , type , String , None
-    // if its 1 , get fcalls return type
-    // if its 2 get methods return type
-    // if its id get identifiers type
-    // if its String tpye is tring
-    // if None type is nonetype
-
-    // Identifiers type : inferred from assignment of expression ( back to square 1)
-    // Fcalls / method type : if there is no return statement then NoneType
-    //                        if there is return expr , then return expr type
-
-    // Problems
-
-    // Function that returns a input var : Same type as the input variable .. Need to know variables output
-
-    // Series of functions whose calls create a circle : Every functions return type depends on its own return type...
-    // Some functions may never return and create an infinite loop
 
     SymbolTable() {
         this.variables = new Hashtable<String, Variable>();
-        this.fcall = new Hashtable<String, ArrayList<Function>>();
-        this.fdef = new Hashtable<String, ArrayList<Function>>();
+        this.fcall = new Hashtable<String, ArrayList<FunctionCall>>();
+        this.fdef = new Hashtable<String, ArrayList<FunctionDefinition>>();
     }
 
     @Override
@@ -109,31 +86,45 @@ public class SymbolTable extends DepthFirstAdapter {
         {
             int sumNonDef = 0;
             Object temp[] = node.getIdentifierValue().toArray();
+            ArrayList<AIdentifierValue> idValuesList = new ArrayList<>();
+            ArrayList<String> varNames = new ArrayList<>();
+            PStatement statement =  node.getStatement();
             for(int i = 0; i < temp.length; i++) {
+                idValuesList.add((AIdentifierValue) temp[i]);
                 ((PIdentifierValue) temp[i]).apply(this);
                 if(((AIdentifierValue) temp[i]).getValue()==null){
                     sumNonDef+=1;
                 }
+                varNames.add(((AIdentifierValue) temp[i]).getIdentifier().getText());
             }
 
             String fname = node.getIdentifier().getText();
             int line = node.getIdentifier().getLine();
             int pos = node.getIdentifier().getPos();
 
+            FunctionDefinition newFunDef = new FunctionDefinition(fname, line, pos, sumNonDef, temp.length);
+            // Finding expected argument types
+            TypeFinder mtf =  new TypeFinder(varNames);
+            node.getStatement().apply(mtf);
+            ArrayList<String> expectedTypes =  mtf.getExpectedTypes();
+            newFunDef.setExpectedTypes(expectedTypes);
+
+            newFunDef.setIdentifierValues(idValuesList);
+            newFunDef.setStatement(statement);
+
+
             if(fdef.get(fname)==null){
-                Function newFunDef = new Function(fname, line, pos, sumNonDef, temp.length);
-                fdef.put(fname, new ArrayList<Function>());
+                fdef.put(fname, new ArrayList<FunctionDefinition>());
                 fdef.get(fname).add(newFunDef);
 
-            }else{
-                ArrayList<Function> functions = fdef.get(fname);
-                for (Function f:functions){
-                    if(f.sum==sumNonDef){
+            }
+            else{
+                ArrayList<FunctionDefinition> functions = fdef.get(fname);
+                for (FunctionDefinition f:functions){
+                    if(newFunDef.redefines(f)){
                         System.out.println("Redefinition of "+fname+" with "+sumNonDef+" arguments");
                     }
                 }
-
-                Function newFunDef = new Function(fname, line, pos, sumNonDef, temp.length);
                 fdef.get(fname).add(newFunDef);
             }
         }
@@ -158,8 +149,8 @@ public class SymbolTable extends DepthFirstAdapter {
             int pos = node.getIdentifier().getPos();
 
             if(fcall.get(fname)==null){
-                Function newFunCall = new Function(fname, line, pos, temp.length);
-                fcall.put(fname, new ArrayList<Function>());
+                FunctionCall newFunCall = new FunctionCall(fname, line, pos, temp.length);
+                fcall.put(fname, new ArrayList<FunctionCall>());
                 fcall.get(fname).add(newFunCall);
             }
         }
@@ -169,21 +160,16 @@ public class SymbolTable extends DepthFirstAdapter {
     @Override
     public void outStart(Start node) {
         for (String k: fcall.keySet()) {
-            ArrayList<Function> funcCalls = fcall.get(k);
+            ArrayList<FunctionCall> funcCalls = fcall.get(k);
             if(fdef.get(k)==null){
                 System.out.println("Undefined function in line "+funcCalls.get(0).line);
             }
             else{
-                ArrayList<Function> allDefinitions = fdef.get(k);
-                for(Function funcCall:funcCalls){
-                    int sumGivenArgs = funcCall.sum;
-
+                ArrayList<FunctionDefinition> allDefinitions = fdef.get(k);
+                for(FunctionCall funcCall:funcCalls){
                     boolean isOk = false;
-                    for(Function fd:allDefinitions){
-                        int sumNonDefArgs = fd.sum;
-                        int sumTotalArgs = fd.total;
-
-                        if(sumNonDefArgs<=sumGivenArgs && sumGivenArgs<=sumTotalArgs){
+                    for(FunctionDefinition fd:allDefinitions){
+                        if(fd.matches(funcCall)){
                             isOk = true;
                         }
                     }
@@ -193,5 +179,30 @@ public class SymbolTable extends DepthFirstAdapter {
                 }
             }
         }
+        isReady = true;
+    }
+
+    public FunctionCall getFuncCallObject(AFuncCallExpression expr){
+        AFunctionCall func = (AFunctionCall) expr.getFunctionCall();
+        return getFuncCallObject(func);
+    }
+    public FunctionCall getFuncCallObject(AFunctionCall call){
+        Object temp[] = call.getExpression().toArray();
+        String fname = call.getIdentifier().getText();
+        int line = call.getIdentifier().getLine();
+        int pos = call.getIdentifier().getPos();
+
+        return new FunctionCall(fname, line, pos, temp.length);
+    }
+    public FunctionDefinition getDefinitionForCall(FunctionCall call){
+        for (FunctionDefinition fd : fdef.get(call.name)){
+            if (fd.matches(call)){
+                return fd;
+            }
+        }
+        return null;
+    }
+    public Variable getVariable(String s){
+        return variables.get(s);
     }
 }
