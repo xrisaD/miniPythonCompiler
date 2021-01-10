@@ -75,6 +75,10 @@ public class FunctionDefinition {
                 return;
             }
         }
+        //if its if statement void can be returned
+        //while behaves like if statement
+        //for behaves like if statement
+        //func call returns void
         retType = "void";
     }
 

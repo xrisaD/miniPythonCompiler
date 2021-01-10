@@ -15,14 +15,15 @@ public class SymbolTable extends DepthFirstAdapter {
 
     boolean isReady = false;
 
-
+    // TOdo haserror variable so typechecker doesn't proceed
+    // TOdo better error messages
 
     SymbolTable() {
         this.variables = new Hashtable<String, Variable>();
         this.fcall = new Hashtable<String, ArrayList<FunctionCall>>();
         this.fdef = new Hashtable<String, ArrayList<FunctionDefinition>>();
     }
-
+    // TODO this need to be moved to type checker (myapapter)
     @Override
     public void inAAssignStatement(AAssignStatement node) {
         String vname = node.getIdentifier().getText();
@@ -48,13 +49,33 @@ public class SymbolTable extends DepthFirstAdapter {
         else if(node.getExpression() instanceof AIdentifierExpression){
             variables.put(vname,new Variable(vname,"identifier"));
         }
+        // TODO need to get ret type of the function call .....
         else if(node.getExpression() instanceof AFuncCallExpression){
             variables.put(vname,new Variable(vname,"function call"));
         }
-        else{
-            //number
+        else if(node.getExpression() instanceof AArithmeticExpression|
+                node.getExpression() instanceof AMinExpression|
+                node.getExpression() instanceof AMaxExpression){
             variables.put(vname,new Variable(vname,"number"));
-            variables.put(vname,new Variable(vname,"expression"));
+        }
+        else if(node.getExpression() instanceof AOpenExpression){
+            variables.put(vname,new Variable(vname,"open"));
+        }
+        else if(node.getExpression() instanceof ATypeExpression){
+            variables.put(vname,new Variable(vname,"type"));
+        }
+        // Now this is a big fucking problem
+        else if(node.getExpression() instanceof ASubscriptionExpression){
+            variables.put(vname,new Variable(vname,"???"));
+        }
+        // another problem , we need to refactor this to a general method of finding types of expression
+        else if(node.getExpression() instanceof AParExpression){
+            variables.put(vname,new Variable(vname,"???"));
+        }
+        else{
+            // TODO if it is a arithmetic expression number type, open expression open type, type expression typetype
+            //number
+            variables.put(vname,new Variable(vname,"undefined"));
         }
     }
 
@@ -71,11 +92,11 @@ public class SymbolTable extends DepthFirstAdapter {
         }
     }
 
-
+    // This is useful because we assume that a function argument can be referened inside and outside the function
     @Override
     public void inAIdentifierValue(AIdentifierValue node) {
         String vname = node.getIdentifier().getText();
-        variables.put(vname,new Variable(vname,""));
+        variables.put(vname,new Variable(vname,"argument"));
     }
 
     public void caseAFunction(AFunction node) {

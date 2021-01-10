@@ -8,9 +8,9 @@ import java.util.*;
  */
 public class MyApapter extends DepthFirstAdapter
 {
-    SymbolTable s;
-    public MyApapter(SymbolTable s) {
-        this.s = s;
+    SymbolTable symbolTable;
+    public MyApapter(SymbolTable symbolTable) {
+        this.symbolTable = symbolTable;
     }
 
     @Override
@@ -18,14 +18,14 @@ public class MyApapter extends DepthFirstAdapter
         String func_name = node.getIdentifier().getText();
         LinkedList args = node.getExpression();
         Object[] argsArray = args.toArray();
-        FunctionDefinition def =  s.getDefinitionForCall(s.getFuncCallObject(node));
+        FunctionDefinition def =  symbolTable.getDefinitionForCall(symbolTable.getFuncCallObject(node));
         ArrayList<String> expectedTypes = def.getExpectedTypes();
-        FunctionCall funcCallObject = s.getFuncCallObject(node);
+        FunctionCall funcCallObject = symbolTable.getFuncCallObject(node);
         // Expected types is larger than args because it coantains types for default arguments as well
         for (int i = 0 ; i < argsArray.length ; i++){
             PExpression expr = (PExpression) argsArray[i];
             String type = getExpressionType(expr);
-            if (!type.equals(expectedTypes.get(i))){
+            if (!type.equals(expectedTypes.get(i)) && !expectedTypes.get(i).equals("any")){
                 showError(funcCallObject.line, funcCallObject.column, "Unexpected type " + type + " as " +
                         "function argument");
             }
@@ -57,8 +57,8 @@ public class MyApapter extends DepthFirstAdapter
         // if left is function call expression and ret type is not number show error
         if (left instanceof AFuncCallExpression){
             AFuncCallExpression functionCall= ((AFuncCallExpression) left);
-            FunctionCall call = s.getFuncCallObject(functionCall);
-            FunctionDefinition fdef = s.getDefinitionForCall(call);
+            FunctionCall call = symbolTable.getFuncCallObject(functionCall);
+            FunctionDefinition fdef = symbolTable.getDefinitionForCall(call);
              if (!fdef.retType.equals("number")){
                  showError(line , pos, "Invalid type for arithmetic expression");
              }
@@ -66,8 +66,8 @@ public class MyApapter extends DepthFirstAdapter
         // if right is function call expression and ret type is not number show error
         if (right instanceof AFuncCallExpression){
             AFuncCallExpression functionCall= ((AFuncCallExpression) right);
-            FunctionCall call = s.getFuncCallObject(functionCall);
-            FunctionDefinition fdef = s.getDefinitionForCall(call);
+            FunctionCall call = symbolTable.getFuncCallObject(functionCall);
+            FunctionDefinition fdef = symbolTable.getDefinitionForCall(call);
             if (!fdef.retType.equals("number")){
                 showError(line , pos, "Invalid type for arithmetic expression");
             }
@@ -133,7 +133,7 @@ public class MyApapter extends DepthFirstAdapter
         }
         if (e instanceof AIdentifierExpression){
             String vname = ((AIdentifierExpression) e).getIdentifier().getText();
-            return s.getVariable(vname).type;
+            return symbolTable.getVariable(vname).type;
         }
         if (e instanceof AValueExpression){
             AValueExpression aValueExpression = (AValueExpression) e;
