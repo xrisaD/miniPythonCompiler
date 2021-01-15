@@ -63,7 +63,6 @@ public class FunctionDefinition {
     }
 
     public void setStatement(PStatement statement) {
-        // TODO get expected types for arguments
         // If any argument is used in a arithmetic expression the expected type is number
         // id the argument is not used anywhere the expected type is 'any'
         this.statement = statement;

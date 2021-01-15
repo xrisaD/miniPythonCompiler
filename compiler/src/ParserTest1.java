@@ -19,8 +19,12 @@ public class ParserTest1
       System.out.println("Applying symbol table");
       SymbolTable s = new SymbolTable();
       ast.apply(s);
-      System.out.println("Applying apapter");
-      ast.apply(new MyApapter(s));
+      if (s.hasError){
+        System.err.println("Symbol table has error... terminating");
+        return;
+      }
+      System.out.println("Applying type checker");
+      ast.apply(new TypeChecker(s));
 
     }
     catch (Exception e)

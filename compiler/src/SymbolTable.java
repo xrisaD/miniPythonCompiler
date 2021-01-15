@@ -14,16 +14,13 @@ public class SymbolTable extends DepthFirstAdapter {
     private Hashtable<String, ArrayList<FunctionDefinition>> fdef;
 
     boolean isReady = false;
-
-    // TOdo haserror variable so typechecker doesn't proceed
-    // TOdo better error messages
+    boolean hasError = false;
 
     SymbolTable() {
         this.variables = new Hashtable<String, Variable>();
         this.fcall = new Hashtable<String, ArrayList<FunctionCall>>();
         this.fdef = new Hashtable<String, ArrayList<FunctionDefinition>>();
     }
-    // TODO this need to be moved to type checker (myapapter)
     @Override
     public void inAAssignStatement(AAssignStatement node) {
         String vname = node.getIdentifier().getText();
@@ -49,7 +46,6 @@ public class SymbolTable extends DepthFirstAdapter {
         else if(node.getExpression() instanceof AIdentifierExpression){
             variables.put(vname,new Variable(vname,"identifier"));
         }
-        // TODO need to get ret type of the function call .....
         else if(node.getExpression() instanceof AFuncCallExpression){
             variables.put(vname,new Variable(vname,"function call"));
         }
@@ -73,7 +69,6 @@ public class SymbolTable extends DepthFirstAdapter {
             variables.put(vname,new Variable(vname,"???"));
         }
         else{
-            // TODO if it is a arithmetic expression number type, open expression open type, type expression typetype
             //number
             variables.put(vname,new Variable(vname,"undefined"));
         }
@@ -88,7 +83,7 @@ public class SymbolTable extends DepthFirstAdapter {
         int pos = node.getIdentifier().getPos();
 
         if(variables.get(vname)==null){
-            System.out.println("You are trying to access undefined variable "+vname+" ["+line+","+pos+"]");
+            showError(line, pos, "undefined variable "+vname);
         }
     }
 
@@ -143,7 +138,7 @@ public class SymbolTable extends DepthFirstAdapter {
                 ArrayList<FunctionDefinition> functions = fdef.get(fname);
                 for (FunctionDefinition f:functions){
                     if(newFunDef.redefines(f)){
-                        System.out.println("Redefinition of "+fname+" with "+sumNonDef+" arguments");
+                        showError(newFunDef.line, newFunDef.col,"Redefinition of "+fname+" with "+sumNonDef+" arguments");
                     }
                 }
                 fdef.get(fname).add(newFunDef);
@@ -183,7 +178,7 @@ public class SymbolTable extends DepthFirstAdapter {
         for (String k: fcall.keySet()) {
             ArrayList<FunctionCall> funcCalls = fcall.get(k);
             if(fdef.get(k)==null){
-                System.out.println("Undefined function in line "+funcCalls.get(0).line);
+                showError(funcCalls.get(0).line,funcCalls.get(0).column,"Undefined function");
             }
             else{
                 ArrayList<FunctionDefinition> allDefinitions = fdef.get(k);
@@ -195,7 +190,8 @@ public class SymbolTable extends DepthFirstAdapter {
                         }
                     }
                     if(!isOk) {
-                        System.out.println("Wrong number of parameters given at function "+k);
+                        showError(0,0,"Wrong number of parameters given at function "+k);
+
                     }
                 }
             }
@@ -225,5 +221,10 @@ public class SymbolTable extends DepthFirstAdapter {
     }
     public Variable getVariable(String s){
         return variables.get(s);
+    }
+
+    public void showError(int line , int col , String message){
+        System.out.printf("[%d,%d] %s%n" , line , col , message);
+        hasError = true;
     }
 }

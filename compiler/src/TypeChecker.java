@@ -6,10 +6,11 @@ import java.util.*;
 /**
  * Adapter class responsible for performing type checks
  */
-public class MyApapter extends DepthFirstAdapter
+public class TypeChecker extends DepthFirstAdapter
 {
     SymbolTable symbolTable;
-    public MyApapter(SymbolTable symbolTable) {
+    boolean hasError = false;
+    public TypeChecker(SymbolTable symbolTable) {
         this.symbolTable = symbolTable;
     }
 
@@ -33,8 +34,9 @@ public class MyApapter extends DepthFirstAdapter
     }
     // TODO get expected types of function return values (if they have) what do we do when they do not return anything though
 
-    public static void showError(int line , int col , String message){
+    public void showError(int line , int col , String message){
         System.out.printf("[%d,%d] %s%n" , line , col , message);
+        hasError = true;
     }
 
     @Override
