@@ -25,53 +25,9 @@ public class SymbolTable extends DepthFirstAdapter {
     public void inAAssignStatement(AAssignStatement node) {
         String vname = node.getIdentifier().getText();
 
-        if(node.getExpression() instanceof AValueExpression){
-            PValue value = ((AValueExpression) node.getExpression()).getValue();
-            if(value instanceof ANoneValue){
-                // none
-                variables.put(vname,new Variable(vname,"none"));
-            }
-            else if(value instanceof ANumberValue){
-                //number
-                variables.put(vname,new Variable(vname,"number"));
-            }
-            else if(value instanceof AStringValue){
-                //string
-                variables.put(vname,new Variable(vname,"string"));
-            }
-        }
-        else if(node.getExpression() instanceof AListDefExpression){
-            variables.put(vname,new Variable(vname,"list"));
-        }
-        else if(node.getExpression() instanceof AIdentifierExpression){
-            variables.put(vname,new Variable(vname,"identifier"));
-        }
-        else if(node.getExpression() instanceof AFuncCallExpression){
-            variables.put(vname,new Variable(vname,"function call"));
-        }
-        else if(node.getExpression() instanceof AArithmeticExpression|
-                node.getExpression() instanceof AMinExpression|
-                node.getExpression() instanceof AMaxExpression){
-            variables.put(vname,new Variable(vname,"number"));
-        }
-        else if(node.getExpression() instanceof AOpenExpression){
-            variables.put(vname,new Variable(vname,"open"));
-        }
-        else if(node.getExpression() instanceof ATypeExpression){
-            variables.put(vname,new Variable(vname,"type"));
-        }
-        // Now this is a big fucking problem
-        else if(node.getExpression() instanceof ASubscriptionExpression){
-            variables.put(vname,new Variable(vname,"???"));
-        }
-        // another problem , we need to refactor this to a general method of finding types of expression
-        else if(node.getExpression() instanceof AParExpression){
-            variables.put(vname,new Variable(vname,"???"));
-        }
-        else{
-            //number
-            variables.put(vname,new Variable(vname,"undefined"));
-        }
+        // WE don't need to keep track of the type
+        variables.put(vname, new Variable(vname, ""));
+
     }
 
 
@@ -121,9 +77,11 @@ public class SymbolTable extends DepthFirstAdapter {
             FunctionDefinition newFunDef = new FunctionDefinition(fname, line, pos, sumNonDef, temp.length);
             // Finding expected argument types
             TypeFinder mtf =  new TypeFinder(varNames);
+            System.out.println("Applygin tpy finder for func " + fname);
             node.getStatement().apply(mtf);
             ArrayList<String> expectedTypes =  mtf.getExpectedTypes();
             newFunDef.setExpectedTypes(expectedTypes);
+            System.out.println("Expected types " + expectedTypes);
 
             newFunDef.setIdentifierValues(idValuesList);
             newFunDef.setStatement(statement);
@@ -190,7 +148,7 @@ public class SymbolTable extends DepthFirstAdapter {
                         }
                     }
                     if(!isOk) {
-                        showError(0,0,"Wrong number of parameters given at function "+k);
+                        showError(funcCall.line, funcCall.column, "Wrong number of parameters given at function "+k);
 
                     }
                 }
@@ -221,6 +179,9 @@ public class SymbolTable extends DepthFirstAdapter {
     }
     public Variable getVariable(String s){
         return variables.get(s);
+    }
+    public Hashtable<String, ArrayList<FunctionDefinition>>  getFunctionDefinitions(){
+        return fdef;
     }
 
     public void showError(int line , int col , String message){

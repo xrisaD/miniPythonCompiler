@@ -18,6 +18,9 @@ public class FunctionDefinition {
     PStatement statement;
 
     String retType;
+    // The functionDefinition object that is returned (if its returned)
+    FunctionDefinition retDef;
+    PFunctionCall retFuncCall;
     ArrayList<String> expectedTypes;
 
 
@@ -73,6 +76,18 @@ public class FunctionDefinition {
                 retType = "number";
                 return;
             }
+            if (expr instanceof AFuncCallExpression){
+                retType = "to_be_decided";
+                retFuncCall = ((AFuncCallExpression) expr).getFunctionCall();
+                return;
+            }
+            if (expr instanceof AValueExpression){
+                if(((AValueExpression) expr).getValue() instanceof AMethodValue){
+                    retFuncCall = ((AMethodValue) ((AValueExpression) expr).getValue()).getFunctionCall();
+                    retType = "to_be_decided";
+                    return;
+                }
+            }
         }
         //if its if statement void can be returned
         //while behaves like if statement
@@ -96,5 +111,12 @@ public class FunctionDefinition {
     @Override
     public int hashCode() {
         return Objects.hash(name, line, col, sum, total);
+    }
+
+    /**
+     * Returns the function definition object of the function call if it is returned by the function
+     */
+    public FunctionDefinition getReturnDef(){
+        return retDef;
     }
 }
